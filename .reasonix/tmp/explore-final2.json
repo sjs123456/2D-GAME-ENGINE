@@ -1,0 +1,69 @@
+{
+  "schedule_dialog": {
+    "name": "新建定时任务",
+    "fields": [
+      {
+        "name": "任务名称",
+        "required": true,
+        "controls": [
+          "input"
+        ]
+      },
+      {
+        "name": "Cron 表达式",
+        "required": true,
+        "controls": [
+          "input"
+        ],
+        "placeholder": "0 8 * * *"
+      },
+      {
+        "name": "关联套件",
+        "required": true,
+        "controls": [
+          "input",
+          "select"
+        ]
+      },
+      {
+        "name": "描述",
+        "required": false,
+        "controls": [
+          "input"
+        ]
+      },
+      {
+        "name": "",
+        "required": false,
+        "controls": [
+          "input",
+          "checkbox"
+        ]
+      }
+    ],
+    "buttons": [
+      "取消",
+      "确认创建"
+    ]
+  },
+  "api_new_after_click_url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/api",
+  "api_new_note": "点击新建无弹窗无跳转",
+  "settings_browser_options": [
+    "Chromium",
+    "Firefox",
+    "WebKit"
+  ],
+  "settings_tab_body": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 test 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / 项目详情 admin123 返回 test 暂无描述 Git 同步 编辑 删除 0 用例总数 0 活跃用例 0 测试套件 0 总执行次数 0% 平均通过率 概览 用例 套件 执行记录 设置 Web 浏览器配置 Chromium CI/CD 集成 API Token 0 个 最近 CI 触发 无记录 管理 CI/CD 配置",
+  "cicd_body": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 test 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / CI/CD 集成 admin123 ⚙️ CI/CD 集成 CI 配置 启用 CI/CD 集成 默认环境 不指定 默认超时（秒） API Token API Token 管理 用于 CI/CD 等自动化场景的身份认证 创建 Token 名称 Token 前缀 状态 最后使用 创建时间 操作 暂无数据 快速集成 curl 命令 GitHub Actions GitLab CI Jenkins 📋 复制 最近 CI 触发 ID 触发 套件 状态 时间 操作 暂无数据",
+  "overview_stat_cards": [
+    "0 用例总数",
+    "0 活跃用例",
+    "0 测试套件",
+    "0 总执行次数",
+    "0% 平均通过率"
+  ],
+  "overview_details": [
+    "返回 test 暂无描述 Git 同步 编辑 删除 0 用例总数 0 活跃用例 0 测试套件 0 总执行次数 0% 平均通过率 概览 用例 套件 执行记录 设置 项目名称 test 拥有者 admin123 Git 仓库 未配置 创建时间 2026-07-29 10:59 更新时间 2026-07-29 10:59 最近执行 暂未执行",
+    "返回 test 暂无描述 Git 同步 编辑 删除"
+  ]
+}

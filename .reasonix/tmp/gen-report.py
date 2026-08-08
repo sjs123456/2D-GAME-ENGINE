@@ -11,10 +11,14 @@ WS = os.environ.get("TEST_WS", r"C:\Users\ahusj\claude-code-vibe\test-ds-v4-flas
 TMP = os.path.join(WS, ".reasonix", "tmp")
 
 module, ver = sys.argv[1], int(sys.argv[2])
-NAME = {"register": "注册", "login": "登录"}[module]
-CASE_N = {"register": "TC05b", "login": "TC06"}[module]
+NAME = {"register": "注册", "login": "登录", "explore": "全站探索"}[module]
 json_file = os.path.join(TMP, f"{module}-test-results-v{ver}.json")
-OUT = os.path.join(WS, f"自动化测试平台-{NAME}页自动化测试报告-v{ver}.html")  # 显式绝对路径
+if not os.path.exists(json_file) and ver == 1:  # 无版本后缀视为 v1
+    json_file = os.path.join(TMP, f"{module}-test-results.json")
+if module == "explore":
+    OUT = os.path.join(WS, f"自动化测试平台-全站探索测试报告-v{ver}.html")  # 显式绝对路径
+else:
+    OUT = os.path.join(WS, f"自动化测试平台-{NAME}页自动化测试报告-v{ver}.html")
 
 DEFECTS = {
     "register": [
@@ -26,6 +30,22 @@ DEFECTS = {
          "TC07：<code>Please include an '@' in the email address...</code>（英文气泡）"),
         ("note", "OBS-003（低）｜确认密码为空提示「两次输入的密码不一致」—— 仍复现",
          "TC11：空确认密码仍提示「两次输入的密码不一致」，语义应改为「请再次输入密码」。"),
+    ],
+    "explore": [
+        ("warn", "BUG-002（中）｜新建套件项目 ID 丢失为 undefined，保存失败",
+         "影响用例：TC05。<br/>点击「新建套件」跳转 <code>/projects/undefined/suites/new</code>，提交返回 "
+         "<code>project_id: Input should be a valid UUID, invalid character: found 'u' at 1</code>，套件无法创建。<br/>"
+         "建议：新建套件入口应携带当前项目真实 ID。"),
+        ("warn", "BUG-003（中）｜新建定时任务后端 500 服务器内部错误",
+         "影响用例：TC10。<br/>POST <code>/api/v1/projects/{id}/schedules</code> 返回 500 "
+         "<code>{\"code\":5000,\"message\":\"服务器内部错误\"}</code>，3 种 cron 变体均复现，与参数无关，任务无法创建。<br/>"
+         "建议：后端排查 schedules 创建接口。"),
+        ("note", "BUG-004（低）｜定时任务弹窗缺 Cron 必填前端校验",
+         "影响用例：TC11。<br/>Cron 留空提交无前端提示、按钮未禁用，直接请求后端导致 500。<br/>建议：前端补充 Cron 必填与格式校验。"),
+        ("note", "OBS-004（低）｜API 测试「新建」按钮点击无响应",
+         "影响用例：TC13。<br/>hover 无 tooltip，点击后无弹窗/无跳转/无写请求（状态 before==after）。<br/>建议：确认该按钮是否需要前置条件或补充事件绑定。"),
+        ("note", "OBS-005（低）｜CI/CD 页面两表格表头混排",
+         "影响用例：TC14。<br/>最近 CI 触发表头混入 API Token 列（12 列混排）。<br/>建议：修复表格列定义。"),
     ],
     "login": [
         ("warn", "BUG-001（中）｜登录失败时前端无任何错误提示 —— 未修复，仍复现",
@@ -46,7 +66,13 @@ def img_tag(path, alt):
             f'<figcaption style="color:#666;font-size:13px;margin-top:6px;">{alt}</figcaption></figure>')
 
 with open(json_file, encoding="utf-8") as f:
-    results = json.load(f)
+    data = json.load(f)
+if isinstance(data, dict) and "results" in data:   # 兼容 {ts,run_at,script,results:[...]} 包装结构
+    run_at = data.get("run_at", "—")
+    script = data.get("script", "—")
+    results = data["results"]
+else:
+    results = data
 
 passed = sum(1 for r in results if r["verdict"] == "PASS")
 failed = sum(1 for r in results if r["verdict"] == "FAIL")
@@ -71,7 +97,11 @@ for r in results:
     if not apis:
         api_rows += f'<tr><td>{r["id"]}</td><td>—</td><td>未发起 API 请求（前端/HTML5 校验拦截）</td></tr>'
     else:
-        for code, url in apis:
+        for item in apis:
+            if isinstance(item, dict):   # 兼容 {status,url,method} 形式
+                code, url = item.get("status"), item.get("url", "")
+            else:                        # 兼容 [status, url] 形式
+                code, url = item[0], item[1]
             color = "#67c23a" if 200 <= code < 300 else "#f56c6c" if code >= 400 else "#e6a23c"
             api_rows += f'<tr><td>{r["id"]}</td><td style="color:{color};font-weight:600;">{code}</td><td><code>{url}</code></td></tr>'
 

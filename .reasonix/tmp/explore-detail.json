@@ -1,0 +1,156 @@
+{
+  "user_dropdown": [
+    "退出登录"
+  ],
+  "dashboard_stats": [
+    {
+      "class": "el-row stat-row",
+      "text": "1 项目总数 — 用例总数 — 今日执行 0% 通过率"
+    },
+    {
+      "class": "el-card is-hover-shadow stat-card",
+      "text": "1 项目总数"
+    },
+    {
+      "class": "el-card__body",
+      "text": "1 项目总数"
+    },
+    {
+      "class": "stat-value",
+      "text": "1"
+    },
+    {
+      "class": "stat-label",
+      "text": "项目总数"
+    },
+    {
+      "class": "el-card is-hover-shadow stat-card",
+      "text": "— 用例总数"
+    },
+    {
+      "class": "el-card__body",
+      "text": "— 用例总数"
+    },
+    {
+      "class": "stat-value",
+      "text": "—"
+    },
+    {
+      "class": "stat-label",
+      "text": "用例总数"
+    },
+    {
+      "class": "el-card is-hover-shadow stat-card",
+      "text": "— 今日执行"
+    },
+    {
+      "class": "el-card__body",
+      "text": "— 今日执行"
+    },
+    {
+      "class": "stat-value",
+      "text": "—"
+    },
+    {
+      "class": "stat-label",
+      "text": "今日执行"
+    },
+    {
+      "class": "el-card is-hover-shadow stat-card",
+      "text": "0% 通过率"
+    },
+    {
+      "class": "el-card__body",
+      "text": "0% 通过率"
+    },
+    {
+      "class": "stat-value",
+      "text": "0%"
+    },
+    {
+      "class": "stat-label",
+      "text": "通过率"
+    },
+    {
+      "class": "el-row chart-row",
+      "text": "近期执行趋势 暂无数据 用例类型分布 暂无数据"
+    },
+    {
+      "class": "el-card is-never-shadow",
+      "text": "近期执行趋势 暂无数据"
+    },
+    {
+      "class": "el-card__header",
+      "text": "近期执行趋势"
+    }
+  ],
+  "project_dialog_title": "新建项目",
+  "project_dialog_fields": [
+    {
+      "name": "项目名称",
+      "required": true,
+      "controls": [
+        "text"
+      ],
+      "placeholder": "请输入项目名称",
+      "input_id": "el-id-5476-16"
+    },
+    {
+      "name": "项目描述",
+      "required": false,
+      "controls": [
+        "textarea"
+      ]
+    },
+    {
+      "name": "Git 仓库地址",
+      "required": false,
+      "controls": [
+        "text"
+      ],
+      "placeholder": "https://github.com/team/test-cases.git（可选）",
+      "input_id": "el-id-5476-18"
+    }
+  ],
+  "project_dialog_buttons": [
+    {
+      "text": "取消",
+      "class": "el-button"
+    },
+    {
+      "text": "确认创建",
+      "class": "el-button el-button--primary"
+    }
+  ],
+  "project_dialog_screenshot": ".reasonix/tmp/explore-项目管理-新建项目.png",
+  "device_buttons": [],
+  "device_filters": [
+    {
+      "index": 0,
+      "options": [
+        "Android",
+        "iOS"
+      ]
+    },
+    {
+      "index": 1,
+      "options": [
+        "空闲",
+        "使用中",
+        "离线",
+        "维护"
+      ]
+    }
+  ],
+  "device_cards": [
+    {
+      "class": "device-list-page",
+      "text": "设备管理 平台 状态 暂无设备"
+    },
+    {
+      "class": "el-card is-never-shadow filter-card",
+      "text": "平台 状态"
+    }
+  ],
+  "logout_found": false
+}

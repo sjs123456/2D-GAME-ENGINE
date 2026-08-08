@@ -1,0 +1,8 @@
+[OK] 登录后 URL: http://123.56.21.178:8080/dashboard
+[OK] 登录态已保存: C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-auth.json
+TC01 | PASS    | 创建成功；toast=['项目创建成功']；详情含项目名=True、admin123=True
+TC02 | PASS    | 校验提示=['请输入项目名称']；toast=[]；弹窗仍打开=True；卡片数 5->5
+TC03 | PASS    | toast=['用例创建成功']；URL=http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a77
+TC04 | PASS    | 校验提示=['请输入用例名称']；toast=[]；URL仍在新建页=True
+TC05 | FAIL    | 缺陷复现：/projects/undefined/suites/new；表单可填写；保存后toast=['project_id: Input should be a valid U
+part1 输出: C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-test-results-part1.json

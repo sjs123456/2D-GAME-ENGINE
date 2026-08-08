@@ -1,0 +1,389 @@
+# -*- coding: utf-8 -*-
+"""整合全部探索结果，生成最终 explore-report.json"""
+import sys, io, json, os
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+PID = "ab2fb177-e302-43bf-a146-6c1b6b9a771c"
+BASE = "http://123.56.21.178:8080"
+SHOT = os.path.join(HERE, "").replace("\\", "/")
+
+report = []
+
+# ============ 0. 登录页 ============
+report.append({
+    "module": "登录页",
+    "url": f"{BASE}/login",
+    "title": "自动化测试平台（登录页）",
+    "features": ["用户名输入", "密码输入", "登录按钮", "登录成功 toast 提示"],
+    "forms": [{
+        "name": "登录表单",
+        "fields": [
+            {"name": "用户名", "selector": "input[placeholder='请输入用户名']", "type": "text", "required": True, "rules": "必填；admin123 为管理员账号"},
+            {"name": "密码", "selector": "input[placeholder='请输入密码']", "type": "password", "required": True, "rules": "必填；Admin123"},
+        ],
+        "buttons": ["登录（button.submit-btn）"],
+    }],
+    "list_actions": [],
+    "row_actions": [],
+    "screenshot": f"{SHOT}explore-nav-probe.png",
+    "notes": ["登录成功后跳转 /dashboard"],
+})
+
+# ============ 1. 仪表盘 ============
+report.append({
+    "module": "仪表盘",
+    "url": f"{BASE}/dashboard",
+    "title": "自动化测试平台",
+    "features": ["统计卡片 ×4", "趋势图表", "类型分布图表", "最近执行记录"],
+    "cards": [
+        {"name": "项目总数", "value": "1", "selector": ".stat-card >> nth=0（.stat-value / .stat-label）"},
+        {"name": "用例总数", "value": "—", "selector": ".stat-card >> nth=1"},
+        {"name": "今日执行", "value": "—", "selector": ".stat-card >> nth=2"},
+        {"name": "通过率", "value": "0%", "selector": ".stat-card >> nth=3"},
+    ],
+    "charts": [
+        {"name": "近期执行趋势", "status": "暂无数据", "selector": ".chart-row .el-card >> nth=0，空态 .trend-placeholder"},
+        {"name": "用例类型分布", "status": "暂无数据", "selector": ".chart-row .el-card >> nth=1"},
+    ],
+    "forms": [],
+    "list_actions": ["最近执行记录（暂无执行记录）"],
+    "row_actions": [],
+    "screenshot": f"{SHOT}explore-仪表盘.png",
+    "notes": ["无任何输入/按钮，纯展示；图表在无数据时不渲染 canvas"],
+})
+
+# ============ 2. 项目管理 ============
+report.append({
+    "module": "项目管理",
+    "url": f"{BASE}/projects",
+    "title": "自动化测试平台",
+    "features": ["搜索项目", "项目卡片列表", "共 N 个项目", "新建项目"],
+    "forms": [{
+        "name": "新建项目",
+        "trigger_button": "新建项目（button:has-text('新建项目')，.el-button--primary.el-button--large）",
+        "fields": [
+            {"name": "项目名称", "selector": "input[placeholder='请输入项目名称']", "type": "text", "required": True, "rules": "必填"},
+            {"name": "项目描述", "selector": "textarea", "type": "textarea", "required": False, "rules": "可选"},
+            {"name": "Git 仓库地址", "selector": "input[placeholder='https://github.com/team/test-cases.git（可选）']", "type": "text", "required": False, "rules": "URL 格式，可选"},
+        ],
+        "buttons": ["取消", "确认创建（primary）"],
+    }],
+    "list_actions": ["搜索框 input[placeholder='搜索项目名称或描述...']", "项目卡片列表 .project-card（点击进入详情）"],
+    "row_actions": ["项目卡片右上角操作下拉：查看详情 / 编辑 / Git 同步 / 删除"],
+    "screenshot": f"{SHOT}explore-项目管理.png",
+    "notes": ["当前环境有 1 个项目：test（创建者 admin123，2026-07-29 创建，0 用例 0 套件）"],
+})
+
+# ============ 3. 设备管理 ============
+report.append({
+    "module": "设备管理",
+    "url": f"{BASE}/devices",
+    "title": "自动化测试平台",
+    "features": ["平台筛选", "状态筛选", "设备卡片列表"],
+    "forms": [],
+    "list_actions": [
+        "平台下拉 .el-select.filter-item >> nth=0（选项：Android / iOS）",
+        "状态下拉 .el-select.filter-item >> nth=1（选项：空闲 / 使用中 / 离线 / 维护）",
+    ],
+    "row_actions": [],
+    "screenshot": f"{SHOT}explore-设备管理.png",
+    "notes": ["无任何创建/添加入口、无按钮；空状态「暂无设备」"],
+})
+
+# ============ 4. 项目详情-概览 ============
+report.append({
+    "module": "项目详情-概览",
+    "url": f"{BASE}/projects/{PID}",
+    "title": "自动化测试平台",
+    "features": ["返回", "项目信息", "统计卡片 ×5", "Git 同步", "编辑项目", "删除项目", "快捷入口", "项目详情"],
+    "tabs": ["概览", "用例", "套件", "执行记录", "设置（.el-tabs__item）"],
+    "forms": [{
+        "name": "编辑项目",
+        "trigger_button": "编辑（button.el-button--primary）",
+        "fields": [
+            {"name": "项目名称", "selector": "input[placeholder='请输入项目名称']", "type": "text", "required": True, "rules": "预填当前项目名 test"},
+            {"name": "项目描述", "selector": "textarea", "type": "textarea", "required": False, "rules": "预填当前描述"},
+            {"name": "Git 仓库地址", "selector": "input[placeholder='https://github.com/...']", "type": "text", "required": False, "rules": "预填当前仓库地址"},
+        ],
+        "buttons": ["取消", "确认创建"],
+    }],
+    "list_actions": ["统计卡片：用例总数0 / 活跃用例0 / 测试套件0 / 总执行次数0 / 平均通过率0%", "快捷入口按钮：管理用例(/testcases)、管理套件(/suites)、查看执行记录(/executions)、管理 CI/CD 配置"],
+    "row_actions": ["删除（button.el-button--danger，破坏性操作未点击）", "Git 同步（禁用态 is-disabled）"],
+    "screenshot": f"{SHOT}explore-项目详情.png",
+    "notes": ["详情字段：项目名称/test、拥有者/admin123、Git 仓库/未配置、创建时间/更新时间 2026-07-29 10:59、最近执行/暂未执行"],
+})
+
+# ============ 5. 用例管理（全部/Web/移动） ============
+for name, url, t in [
+    ("全部用例", f"{BASE}/projects/{PID}/testcases", "全部"),
+    ("Web测试", f"{BASE}/projects/{PID}/testcases?type=web", "web"),
+    ("移动测试", f"{BASE}/projects/{PID}/testcases?type=mobile", "mobile"),
+]:
+    report.append({
+        "module": f"用例管理-{name}",
+        "url": url,
+        "title": "自动化测试平台",
+        "features": ["搜索用例", "优先级筛选", "状态筛选", "批量导入", "新建用例"],
+        "forms": [
+            {
+                "name": "批量导入用例",
+                "trigger_button": "批量导入",
+                "fields": [
+                    {"name": "导入方式", "selector": "radio + input", "type": "radio", "required": False, "rules": "未标注必填"},
+                    {"name": "JSON 数据", "selector": "textarea", "type": "textarea", "required": False, "rules": "粘贴 JSON"},
+                    {"name": "重名处理", "selector": "radio + input", "type": "radio", "required": False, "rules": "重名策略"},
+                ],
+                "buttons": ["取消", "开始导入"],
+            },
+            {
+                "name": "新建用例（独立页面）",
+                "trigger_button": "新建用例（button.el-button--primary）→ 跳转 /testcases/new/{type}",
+                "fields": [
+                    {"name": "用例名称", "selector": "input[placeholder='请输入用例名称']", "type": "text", "required": True, "rules": "必填，长度 ≤200（0/200 计数）"},
+                    {"name": "测试类型", "selector": "select", "type": "select", "required": False, "rules": "Web 测试 / API 测试 / 移动测试"},
+                    {"name": "优先级", "selector": "select", "type": "select", "required": False, "rules": "P0(紧急)/P1(高)/P2(中)/P3(低)，默认 P2 (中)"},
+                    {"name": "状态", "selector": "select", "type": "select", "required": False, "rules": "活跃/草稿/弃用，默认 草稿"},
+                    {"name": "超时(秒)", "selector": "input", "type": "number", "required": False, "rules": "数字"},
+                    {"name": "重试次数", "selector": "input", "type": "number", "required": False, "rules": "数字"},
+                    {"name": "标签", "selector": "input + select", "type": "tags", "required": False, "rules": "输入标签后回车添加"},
+                    {"name": "前置条件", "selector": "textarea", "type": "textarea", "required": False, "rules": "长度 ≤2000"},
+                    {"name": "测试步骤", "selector": "动态区 + 添加步骤", "type": "dynamic", "required": False, "rules": "步骤编辑区"},
+                    {"name": "参数变量", "selector": "动态区 + 添加参数组", "type": "dynamic", "required": False, "rules": "参数组，暂未定义"},
+                ],
+                "buttons": ["取消", "保存草稿", "保存并关闭", "AI 生成", "🤖 AI 生成测试数据"],
+            },
+        ],
+        "list_actions": [
+            "搜索框 input[placeholder='搜索用例名称...']",
+            "优先级筛选 .el-select.filter-item >> nth=0（P0/P1/P2/P3）",
+            "状态筛选 .el-select.filter-item >> nth=1（活跃/草稿/弃用）",
+        ],
+        "row_actions": ["表格行操作（当前无数据；列表空态「暂无用例 创建第一个用例」）"],
+        "screenshot": f"{SHOT}explore-sub-{name}.png",
+        "notes": ["Web/移动与全部用例共用页面，仅 type 参数区分；表格结构暂未展现（空数据）"],
+    })
+
+# ============ 6. API测试 ============
+report.append({
+    "module": "API测试",
+    "url": f"{BASE}/projects/{PID}/api",
+    "title": "自动化测试平台",
+    "features": ["搜索用例", "筛选", "新建", "查询"],
+    "forms": [],
+    "list_actions": ["搜索框 input[placeholder='搜索用例名称']", "筛选下拉 ×2（.el-select.filter-item）", "查询按钮"],
+    "row_actions": ["表格列：用例名称/接口/方法/状态/标签/步骤数/操作（当前空数据）"],
+    "screenshot": f"{SHOT}explore-sub-API测试.png",
+    "notes": ["⚠️ 可疑：「新建」按钮（button:has-text('新建')，.el-button--primary）点击后无弹窗、无跳转、hover 无 tooltip，疑似功能异常或需满足前置条件"],
+})
+
+# ============ 7. 测试套件 ============
+report.append({
+    "module": "测试套件",
+    "url": f"{BASE}/projects/{PID}/suites",
+    "title": "自动化测试平台",
+    "features": ["搜索套件", "新建套件"],
+    "forms": [{
+        "name": "新建套件（独立页面）",
+        "trigger_button": "新建套件（button:has-text('新建套件')）",
+        "fields": [
+            {"name": "套件名称", "selector": "input", "type": "text", "required": True, "rules": "必填"},
+            {"name": "描述", "selector": "textarea", "type": "textarea", "required": False, "rules": "可选"},
+            {"name": "启用并发执行", "selector": "switch", "type": "switch", "required": False, "rules": "开关"},
+            {"name": "失败即停止", "selector": "switch", "type": "switch", "required": False, "rules": "开关"},
+            {"name": "套件变量", "selector": "动态区 + 添加变量", "type": "dynamic", "required": False, "rules": "{{变量名}} 引用"},
+            {"name": "前置处理 Setup", "selector": "动态区 + 添加步骤", "type": "dynamic", "required": False, "rules": "套件执行前运行"},
+            {"name": "用例编排", "selector": "可选用例 → 已选用例（拖拽排序）", "type": "transfer", "required": False, "rules": "勾选用例后添加"},
+        ],
+        "buttons": ["取消", "保存套件"],
+    }],
+    "list_actions": ["搜索框 input[placeholder='搜索套件名称...']"],
+    "row_actions": [],
+    "screenshot": f"{SHOT}explore-sub-测试套件.png",
+    "notes": ["⚠️ BUG：点击「新建套件」跳转 URL 为 /projects/undefined/suites/new（项目 ID 丢失为 undefined），侧边栏显示「当前项目 undefined」；但新建套件表单仍可正常加载。空状态「暂无套件 创建第一个套件」"],
+})
+
+# ============ 8. 执行记录 ============
+report.append({
+    "module": "执行记录",
+    "url": f"{BASE}/projects/{PID}/executions",
+    "title": "自动化测试平台",
+    "features": ["状态筛选", "触发方式筛选", "刷新"],
+    "forms": [],
+    "list_actions": [
+        "状态下拉 .el-select.filter-item >> nth=0（待处理/排队中/运行中/已完成/失败/已取消）",
+        "触发方式下拉 .el-select.filter-item >> nth=1（手动/定时/CI）",
+        "刷新按钮（button:has-text('刷新')）",
+    ],
+    "row_actions": [],
+    "screenshot": f"{SHOT}explore-sub-执行记录.png",
+    "notes": ["空状态「暂无执行记录」"],
+})
+
+# ============ 9. AI测试助手 ============
+report.append({
+    "module": "AI测试助手",
+    "url": f"{BASE}/projects/{PID}/ai-assistant",
+    "title": "自动化测试平台",
+    "features": ["对话区", "清空对话", "生成用例", "分析失败", "生成数据", "修复定位器"],
+    "forms": [],
+    "list_actions": ["清空对话（禁用态 is-disabled）", "📝 生成用例", "🔍 分析失败", "📊 生成数据", "🔧 修复定位器"],
+    "row_actions": [],
+    "screenshot": f"{SHOT}explore-sub-AI测试助手.png",
+    "notes": ["聊天式交互；点「生成用例」未弹窗未跳转（可能向对话区发送指令）"],
+})
+
+# ============ 10. 测试报告 ============
+report.append({
+    "module": "测试报告",
+    "url": f"{BASE}/projects/{PID}/reports",
+    "title": "自动化测试平台",
+    "features": ["报告类型筛选", "去触发执行"],
+    "forms": [],
+    "list_actions": ["报告类型下拉 .el-select--small（选项为空，无数据）", "去触发执行（button.el-button--primary，空态按钮）"],
+    "row_actions": [],
+    "screenshot": f"{SHOT}explore-sub-测试报告.png",
+    "notes": ["空状态「暂无测试报告 去触发执行」；类型下拉无可选项"],
+})
+
+# ============ 11. 关键字库 ============
+report.append({
+    "module": "关键字库",
+    "url": f"{BASE}/projects/{PID}/keywords",
+    "title": "自动化测试平台",
+    "features": ["搜索关键字", "类型筛选", "添加关键字"],
+    "forms": [{
+        "name": "添加关键字",
+        "trigger_button": "添加关键字（button:has-text('添加关键字')）",
+        "fields": [
+            {"name": "关键字名称", "selector": "input", "type": "text", "required": True, "rules": "必填"},
+            {"name": "类型", "selector": "select", "type": "select", "required": False, "rules": "下拉选择"},
+            {"name": "描述", "selector": "input", "type": "text", "required": False, "rules": "可选"},
+            {"name": "Python 代码", "selector": "textarea", "type": "textarea", "required": True, "rules": "必填，Python 实现"},
+            {"name": "参数定义（JSON）", "selector": "textarea", "type": "textarea", "required": False, "rules": "JSON 格式，可选"},
+        ],
+        "buttons": ["取消", "确认创建"],
+    }],
+    "list_actions": ["搜索框 input[placeholder='搜索关键字名称...']", "类型筛选 .el-select.filter-item"],
+    "row_actions": [],
+    "screenshot": f"{SHOT}explore-sub-关键字库.png",
+    "notes": ["空状态「暂无关键字 添加第一个关键字」"],
+})
+
+# ============ 12. 测试环境 ============
+report.append({
+    "module": "测试环境",
+    "url": f"{BASE}/projects/{PID}/environments",
+    "title": "自动化测试平台",
+    "features": ["搜索环境", "新建环境"],
+    "forms": [{
+        "name": "新建环境",
+        "trigger_button": "新建环境（button:has-text('新建环境')）",
+        "fields": [
+            {"name": "环境名称", "selector": "input[placeholder='例如: 测试环境']", "type": "text", "required": True, "rules": "必填"},
+            {"name": "环境类型", "selector": "select", "type": "select", "required": False, "rules": "下拉选择"},
+            {"name": "基础 URL", "selector": "input[placeholder='https://staging.api.example.com']", "type": "text", "required": True, "rules": "必填，URL 格式"},
+            {"name": "全局超时 (ms)", "selector": "input", "type": "number", "required": False, "rules": "毫秒数"},
+            {"name": "Headers", "selector": "动态区 + 添加 Header", "type": "dynamic", "required": False, "rules": "键值对"},
+            {"name": "变量", "selector": "动态区 + 添加变量", "type": "dynamic", "required": False, "rules": "键值对"},
+        ],
+        "buttons": ["+ 添加 Header", "+ 添加变量", "取消", "确认创建"],
+    }],
+    "list_actions": ["搜索框 input[placeholder='搜索环境名称...']"],
+    "row_actions": [],
+    "screenshot": f"{SHOT}explore-sub-测试环境.png",
+    "notes": ["空状态「暂无环境配置 新建环境」"],
+})
+
+# ============ 13. 定时任务 ============
+report.append({
+    "module": "定时任务",
+    "url": f"{BASE}/projects/{PID}/schedules",
+    "title": "自动化测试平台",
+    "features": ["新建定时任务"],
+    "forms": [{
+        "name": "新建定时任务",
+        "trigger_button": "新建定时任务（button:has-text('新建定时任务')）",
+        "fields": [
+            {"name": "任务名称", "selector": "input", "type": "text", "required": True, "rules": "必填"},
+            {"name": "Cron 表达式", "selector": "input[placeholder='0 8 * * *']", "type": "text", "required": True, "rules": "必填，cron 格式"},
+            {"name": "关联套件", "selector": "select", "type": "select", "required": True, "rules": "必填，下拉选择套件"},
+            {"name": "描述", "selector": "input", "type": "text", "required": False, "rules": "可选"},
+            {"name": "启用", "selector": "checkbox/switch", "type": "boolean", "required": False, "rules": "是否启用"},
+        ],
+        "buttons": ["取消", "确认创建"],
+    }],
+    "list_actions": [],
+    "row_actions": [],
+    "screenshot": f"{SHOT}explore-sub-定时任务.png",
+    "notes": ["空状态「暂无定时任务 创建第一个定时任务」"],
+})
+
+# ============ 14. API Token ============
+report.append({
+    "module": "API Token",
+    "url": f"{BASE}/projects/{PID}/settings/tokens",
+    "title": "自动化测试平台",
+    "features": ["创建 Token", "Token 列表"],
+    "forms": [{
+        "name": "创建 API Token",
+        "trigger_button": "创建 Token（button:has-text('创建 Token')）",
+        "fields": [
+            {"name": "Token 名称", "selector": "input[placeholder='例如: github-ci-token']", "type": "text", "required": True, "rules": "必填"},
+            {"name": "过期时间（可选）", "selector": "date-picker（placeholder='永不过期'）", "type": "date", "required": False, "rules": "日期选择，默认永不过期"},
+        ],
+        "buttons": ["关闭", "创建"],
+    }],
+    "list_actions": ["表格列：名称/Token 前缀/状态/最后使用/创建时间/操作"],
+    "row_actions": ["表格行操作（当前空数据）"],
+    "screenshot": f"{SHOT}explore-sub-API Token.png",
+    "notes": ["空状态「暂无数据」"],
+})
+
+# ============ 15. CI/CD 集成 ============
+report.append({
+    "module": "CI/CD 集成",
+    "url": f"{BASE}/projects/{PID}/settings/ci",
+    "title": "自动化测试平台",
+    "features": ["CI 配置", "API Token 管理", "快速集成命令", "最近 CI 触发"],
+    "forms": [{
+        "name": "创建 API Token",
+        "trigger_button": "创建 Token",
+        "fields": [
+            {"name": "Token 名称", "selector": "input[placeholder='例如: github-ci-token']", "type": "text", "required": True, "rules": "必填"},
+            {"name": "过期时间（可选）", "selector": "date-picker（placeholder='永不过期'）", "type": "date", "required": False, "rules": "日期选择"},
+        ],
+        "buttons": ["关闭", "创建"],
+    }],
+    "list_actions": [
+        "启用 CI/CD 集成（switch）",
+        "默认环境下拉（不指定）",
+        "默认超时（秒）（input[type=number]）",
+        "快速集成：curl 命令 / GitHub Actions / GitLab CI / Jenkins + 📋 复制（copy-btn）",
+    ],
+    "row_actions": ["最近 CI 触发表格列：ID/触发/套件/状态/时间/操作（空数据）"],
+    "screenshot": f"{SHOT}explore-sub-CI_CD.png",
+    "notes": ["⚠️ 表格列头异常：页面渲染了 API Token 表格列与最近 CI 触发表格列合并显示（名称/Token前缀/状态/最后使用/创建时间/操作 + ID/触发/套件/状态/时间/操作），疑似两个表格共享表头区"],
+})
+
+# ============ 16. 项目详情-设置tab ============
+report.append({
+    "module": "项目详情-设置tab",
+    "url": f"{BASE}/projects/{PID}（点击 .el-tabs__item '设置'）",
+    "title": "自动化测试平台",
+    "features": ["Web 浏览器配置", "CI/CD 集成", "API Token 概览", "最近 CI 触发"],
+    "forms": [],
+    "list_actions": ["Web 浏览器配置下拉（Chromium / Firefox / WebKit，默认 Chromium）", "管理 CI/CD 配置按钮"],
+    "row_actions": [],
+    "screenshot": f"{SHOT}explore-sub-设置-tab.png",
+    "notes": ["设置 tab 为页面内切换，URL 不变；内容与 /settings/ci、/settings/tokens 页面存在重叠"],
+})
+
+# 落盘
+out_path = os.path.join(HERE, "explore-report.json")
+with open(out_path, "w", encoding="utf-8") as f:
+    json.dump(report, f, ensure_ascii=False, indent=2)
+print("报告已写入:", out_path)
+print("模块数:", len(report))
+for m in report:
+    print(" -", m["module"], "|", m["url"])

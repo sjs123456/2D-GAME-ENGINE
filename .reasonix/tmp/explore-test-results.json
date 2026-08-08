@@ -1,0 +1,657 @@
+{
+  "ts": "20260808212618",
+  "run_at": "2026-08-08 21:29:51",
+  "script": "explore-cases-v1.py",
+  "results": [
+    {
+      "id": "TC01",
+      "desc": "项目管理：新建项目成功（唯一测试项目名）",
+      "step": "进入 /projects → 点击「新建项目」→ 填写项目名称/描述/Git 地址 → 点击「确认创建」",
+      "expect": "toast「项目创建成功」；项目卡片列表出现 proj_<ts>；可搜索；详情名称=proj_<ts>、拥有者=admin123",
+      "result": "创建成功；toast=['项目创建成功']；详情含项目名=True、admin123=True",
+      "url": "http://123.56.21.178:8080/projects/72da5460-efb2-4130-806d-f467d4f6b2c7",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC01.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects",
+          "status": 201,
+          "method": "POST"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/72da5460-efb2-4130-806d-f467d4f6b2c7",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/72da5460-efb2-4130-806d-f467d4f6b2c7/statistics/overview",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/72da5460-efb2-4130-806d-f467d4f6b2c7/api-tokens",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/72da5460-efb2-4130-806d-f467d4f6b2c7/executions?page=1&page_size=1&trigger=ci",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/72da5460-efb2-4130-806d-f467d4f6b2c7",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "hints": [
+        "toast=[\"项目创建成功\"]",
+        "搜索后项目卡片出现=True"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 proj_20260808212618 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / 项目详情 admin123 返回 proj_20260808212618 自动化回归测试项目-20260808212618 Git 同步 编辑 删除 0 用例总数 0 活跃用例 0 测试套件 0 总执行次数 0% 平均通过率 概览 用例 套件 执行记录 设置 项目名称 proj_20260808212618 拥有者 admin123 Git 仓库 https://github.com/team/proj_20260808212618.git 创建时间 2026-08-08 21:26 更新时间 2026-08-08 21:26 最近执行 暂未执行",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:26:18"
+    },
+    {
+      "id": "TC02",
+      "desc": "项目管理：新建项目必填校验（项目名称为空）",
+      "step": "进入 /projects → 新建项目 → 名称留空 → 确认创建",
+      "expect": "出现「请输入项目名称」提示或按钮禁用；弹窗不关闭；无创建成功请求",
+      "result": "校验提示=['请输入项目名称']；toast=[]；弹窗仍打开=True；卡片数 5->5",
+      "url": "http://123.56.21.178:8080/projects",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC02.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "hints": [
+        "before=5",
+        "after=5"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 首页 / 项目管理 admin123 项目管理 共 5 个项目 新建项目 proj_20260808212618 自动化回归测试项目-20260808212618 0 用例 0 套件 admin123 刚刚 proj_20260808212424 自动化回归测试项目-20260808212424 0 用例 0 套件 admin123 2 分钟前 proj_20260808212217 自动化回归测试项目-20260808212217 0 用例 0 套件 admin123 4 分钟前 proj_20260808211905 自动化回归测试项目-20260808211905 0 用例 0 套件 admin123 7 分钟前 test 暂无描述 1 用例 1 套件 admin123 2026-07-29 新建项目 项目名称 0 / 200 请输入项目名称",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:26:18"
+    },
+    {
+      "id": "TC03",
+      "desc": "用例管理：新建 Web 用例成功（保存并关闭）",
+      "step": "项目详情 → 用例 tab → 新建用例 → 填字段 → 保存并关闭",
+      "expect": "toast 保存成功；跳回用例列表；出现 case_<ts>，类型=Web 测试、状态=活跃、优先级=P1",
+      "result": "toast=['用例创建成功']；URL=http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases；表含case=True、Web=True、活跃=True、P1=True",
+      "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC03.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases?page=1&page_size=20&type=web",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/keywords?page_size=200&type=web",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases",
+          "status": 201,
+          "method": "POST"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases?page=1&page_size=20",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases?page=1&page_size=20",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases?page=1&page_size=20&keyword=case_20260808212618",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "hints": [
+        "new_url=http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases/new/web",
+        "类型=no-ctrl:测试类型",
+        "优先级=el:P1 (高)",
+        "状态=el:活跃",
+        "超时=err:超时:Locator.fill: Timeout 15000ms exceeded.\nCall log:\n  - waitin",
+        "重试=err:重试:Locator.fill: Timeout 15000ms exceeded.\nCall log:\n  - waitin",
+        "前置=ok:前置条件",
+        "已添加测试步骤（步骤说明）",
+        "toast=[\"用例创建成功\"]",
+        "表格类型列显示 Web（等价 Web 测试）"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 test 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / 用例管理 admin123 用例管理 共 1 个用例 批量导入 新建用例 全部用例 Web 测试 API 测试 移动测试 优先级 状态 用例名称 类型 优先级 状态 步骤 创建者 更新时间 操作 case_20260808212618 Web P1 活跃 1 admin123 刚刚 编辑 执行 复制 删除 用例创建成功",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:26:18"
+    },
+    {
+      "id": "TC04",
+      "desc": "用例管理：新建用例必填校验（用例名称为空）",
+      "step": "项目详情 → 用例 tab → 新建用例 → 名称留空 → 保存并关闭",
+      "expect": "出现「请输入用例名称」提示或保存按钮禁用；不跳转、无成功 toast；URL 仍在 /testcases/new/web",
+      "result": "校验提示=['请输入用例名称']；toast=[]；URL仍在新建页=True",
+      "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases/new/web",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC04.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases?page=1&page_size=20&type=web",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/keywords?page_size=200&type=web",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "hints": [],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 test 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / 创建用例 admin123 新建用例 取消 保存草稿 保存并关闭 AI 生成 基本信息 用例名称 0 / 200 请输入用例名称 测试类型 Web 测试 优先级 P2 (中) 状态 草稿 超时(秒) 重试次数 标签 输入标签后回车添加 前置条件 0 / 2000 测试步骤 + 添加步骤 参数变量 暂未定义参数变量 + 添加参数组 🤖 AI 生成测试数据",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:26:18"
+    },
+    {
+      "id": "TC05",
+      "desc": "测试套件：新建套件 + 已知缺陷回归（undefined 项目 ID）",
+      "step": "项目详情 → 套件 tab → 新建套件 → 记录 URL → 填名称/描述 → 保存套件",
+      "expect": "URL 应含有效项目 ID；若为 /projects/undefined/suites/new 则缺陷复现；表单可填写；保存后列表出现 suite_<ts>",
+      "result": "缺陷复现：/projects/undefined/suites/new；表单可填写；保存后toast=['project_id: Input should be a valid UUID, invalid character: found `u` at 1']；列表出现=False",
+      "url": "http://123.56.21.178:8080/projects/undefined/suites/new",
+      "title": "自动化测试平台",
+      "verdict": "FAIL",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC05.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/suites?page=1",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/undefined/testcases?page_size=500",
+          "status": 422,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/undefined",
+          "status": 422,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/undefined/suites",
+          "status": 422,
+          "method": "POST"
+        }
+      ],
+      "hints": [
+        "缺陷复现：/projects/undefined/suites/new",
+        "点击后URL=http://123.56.21.178:8080/projects/undefined/suites/new",
+        "URL含undefined=True",
+        "toast=[\"project_id: Input should be a valid UUID, invalid character: found `u` at 1\"]",
+        "保存后URL=http://123.56.21.178:8080/projects/undefined/suites/new",
+        "列表搜索异常"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 undefined 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / 新建套件 admin123 < 返回 新建套件 取消 保存套件 基本信息 套件名称 描述 启用并发执行 失败即停止 套件变量 在用例中通过 {{变量名}} 引用 + 添加变量 前置处理 (Setup) 在套件执行前运行 暂无步骤，点击下方按钮添加 + 添加步骤 用例编排 (0 / 0) 可选用例 暂无可用用例 添加选中（0） → 已选用例（拖拽排序） 请在左侧勾选用例后点击添加 清空全部 后置处理 (Teardown) 在套件执行后运行 暂无步骤，点击下方按钮添加 + 添加步骤",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:26:18"
+    },
+    {
+      "id": "TC06",
+      "desc": "测试套件：新建套件必填校验（套件名称为空）",
+      "step": "项目详情 → 套件 tab → 新建套件 → 名称留空 → 保存套件",
+      "expect": "出现「请输入套件名称」提示或按钮禁用；不跳转、无成功 toast；未创建空名套件",
+      "result": "校验提示=['请输入套件名称']；toast=[]；URL=http://123.56.21.178:8080/projects/undefined/suites/new",
+      "url": "http://123.56.21.178:8080/projects/undefined/suites/new",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC06.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/suites?page=1",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/undefined/testcases?page_size=500",
+          "status": 422,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/undefined",
+          "status": 422,
+          "method": "GET"
+        }
+      ],
+      "hints": [
+        "URL=http://123.56.21.178:8080/projects/undefined/suites/new"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 undefined 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / 新建套件 admin123 < 返回 新建套件 取消 保存套件 基本信息 套件名称 请输入套件名称 描述 启用并发执行 失败即停止 套件变量 在用例中通过 {{变量名}} 引用 + 添加变量 前置处理 (Setup) 在套件执行前运行 暂无步骤，点击下方按钮添加 + 添加步骤 用例编排 (0 / 0) 可选用例 暂无可用用例 添加选中（0） → 已选用例（拖拽排序） 请在左侧勾选用例后点击添加 清空全部 后置处理 (Teardown) 在套件执行后运行 暂无步骤，点击下方按钮添加 + 添加步骤",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:27:34"
+    },
+    {
+      "id": "TC07",
+      "desc": "测试环境：新建环境成功",
+      "step": "项目详情 → 环境页 → 新建环境 → 填名称/类型/URL/超时 → 确认创建",
+      "expect": "toast「环境创建成功」；环境列表出现 env_<ts>；类型=Staging、URL 正确",
+      "result": "toast=['环境已创建']；表含env=True、Staging=True、URL=True",
+      "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/environments",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC07.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/environments?page=1&page_size=20&keyword=",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/environments",
+          "status": 201,
+          "method": "POST"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/environments?page=1&page_size=20&keyword=",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/environments?page=1&page_size=20&keyword=env_20260808212618",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "hints": [
+        "类型=el:Staging（测试）",
+        "超时=ok:全局超时",
+        "toast=[\"环境已创建\"]"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 test 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / 测试环境 admin123 测试环境配置 共 1 个环境 新建环境 环境名称 类型 基础 URL 更新时间 操作 Staging env_20260808212618 Staging https://staging-20260808212618.example.com 2026-08-08 21:27 编辑 复制 删除 环境已创建",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:27:34"
+    },
+    {
+      "id": "TC08",
+      "desc": "测试环境：新建环境必填校验（基础 URL 为空）",
+      "step": "项目详情 → 环境页 → 新建环境 → 名称填、URL 留空 → 确认创建",
+      "expect": "出现「请输入基础 URL」提示或按钮禁用；弹窗不关闭；未创建环境",
+      "result": "校验提示=['请输入基础 URL']；toast=[]；弹窗仍打开=True",
+      "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/environments",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC08.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/environments?page=1&page_size=20&keyword=",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "hints": [],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 test 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / 测试环境 admin123 测试环境配置 共 2 个环境 新建环境 环境名称 类型 基础 URL 更新时间 操作 Staging env_20260808212618 Staging https://staging-20260808212618.example.com 2026-08-08 21:27 编辑 复制 删除 Staging env_20260808211905 Staging https://staging-20260808211905.example.com 2026-08-08 21:20 编辑 复制 删除 新建环境 基本信息 环境名称 环境类型 Staging（测试） 基础",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:27:34"
+    },
+    {
+      "id": "TC09",
+      "desc": "关键字库：添加关键字成功",
+      "step": "项目详情 → 关键字库 → 添加关键字 → 填名称/类型/描述/Python 代码 → 确认创建",
+      "expect": "toast 添加成功；关键字列表出现 kw_<ts>；Python 代码展示正确",
+      "result": "toast=['关键字创建成功']；关键字卡片含kw=True（kw_20260808212618 显示于 .keyword-card） ；代码展示=True（def kw_20260808212618(): return 'ok'）",
+      "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/keywords",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC09.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/keywords?page=1",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/keywords",
+          "status": 201,
+          "method": "POST"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/keywords?page=1",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/keywords?page=1&keyword=kw_20260808212618",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "hints": [
+        "名称=ok:关键字名称",
+        "类型=el-first:Web",
+        "描述=ok:描述",
+        "Python=ok:Python 代码",
+        "toast=[\"关键字创建成功\"]",
+        "修正依据：复测确认关键字列表为 .keyword-card 卡片结构（非 el-table），kw_ts 与 Python 代码均在卡片中展示；POST /keywords 201"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 test 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / 关键字库 admin123 关键字库 添加关键字 类型 kw_20260808212618 Web 关键字-20260808212618 def kw_20260808212618(): return 'ok' 关键字创建成功",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:27:34"
+    },
+    {
+      "id": "TC10",
+      "desc": "定时任务：新建定时任务成功",
+      "step": "项目详情 → 定时任务 → 新建定时任务 → 填名称/Cron/描述/选套件 → 确认创建",
+      "expect": "toast 创建成功；定时任务列表出现 sched_<ts>；Cron=0 8 * * *、套件=suite_<ts>、状态=启用",
+      "result": "缺陷复现：新建定时任务 POST /api/v1/projects/.../schedules 返回 500（服务器内部错误）；toast=['服务器内部错误','操作失败']；任务未创建，弹窗不关闭",
+      "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/schedules",
+      "title": "自动化测试平台",
+      "verdict": "FAIL",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC10.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/suites?page=1",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/suites?page=1&keyword=suite_20260808212618",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases?page_size=500",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/suites",
+          "status": 201,
+          "method": "POST"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/suites?page=1",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/suites?page_size=100",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/schedules?page=1",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/schedules",
+          "status": 500,
+          "method": "POST"
+        }
+      ],
+      "hints": [
+        "缺陷：新建定时任务返回 500 服务器内部错误",
+        "TC05 套件未保存成功，降级：用有效项目 ID 进入 /projects/{id}/suites/new 建套件",
+        "降级创建套件toast=[\"套件创建成功\"]",
+        "降级创建后URL=http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/suites",
+        "任务名称=ok:任务名称",
+        "Cron=ok:Cron 表达式",
+        "关联套件=el:suite_20260808212618",
+        "描述=ok:描述",
+        "toast=[\"服务器内部错误\", \"操作失败\"]",
+        "修正依据：复测 3 种 cron 变体（*/5 * * * *、0 0 * * 1、30 8 * * *）全部返回 500，与参数无关，后端缺陷稳定复现"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 test 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / 定时任务 admin123 定时任务 新建定时任务 暂无定时任务 创建第一个定时任务 新建定时任务 任务名称 Cron 表达式 分 时 日 月 周 — 示例: 0 8 * * * 每天8点 关联套件 suite_20260808212618 描述 启用 取消 确认创建 服务器内部错误 操作失败",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:27:34"
+    },
+    {
+      "id": "TC11",
+      "desc": "定时任务：新建必填校验（Cron 表达式为空）",
+      "step": "项目详情 → 定时任务 → 新建定时任务 → Cron 留空 → 确认创建",
+      "expect": "出现「请输入 Cron 表达式」提示或按钮禁用；弹窗不关闭；未创建任务",
+      "result": "前端未出现 Cron 必填校验提示（校验提示=[]）、按钮未禁用，点击「确认创建」直接提交后端，返回 500（服务器内部错误）；弹窗不关闭、未创建任务（间接达成）",
+      "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/schedules",
+      "title": "自动化测试平台",
+      "verdict": "FAIL",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC11.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/schedules?page=1",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/suites?page_size=100",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/schedules",
+          "status": 500,
+          "method": "POST"
+        }
+      ],
+      "hints": [
+        "缺陷：定时任务弹窗缺少 Cron 表达式前端必填校验（未出现「请输入 Cron 表达式」提示、按钮未禁用），点击后直接提交触发后端 500（与 TC10 同一后端缺陷）",
+        "任务名称=ok:任务名称",
+        "关联套件=el:suite_20260808212618"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 test 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / 定时任务 admin123 定时任务 新建定时任务 暂无定时任务 创建第一个定时任务 新建定时任务 任务名称 Cron 表达式 分 时 日 月 周 — 示例: 0 8 * * * 每天8点 关联套件 suite_20260808212618 描述 启用 取消 确认创建 服务器内部错误 操作失败",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:29:51"
+    },
+    {
+      "id": "TC12",
+      "desc": "API Token：创建 Token 成功",
+      "step": "项目详情 → 设置 → API Token → 创建 Token → 填名称 → 创建",
+      "expect": "toast 创建成功；Token 列表出现 token_<ts>；Token 前缀展示",
+      "result": "toast=[]；表含token=True",
+      "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/settings/tokens",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC12.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/api-tokens",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/api-tokens",
+          "status": 201,
+          "method": "POST"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/api-tokens",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "hints": [
+        "toast=[]",
+        "Token展示弹窗文本=创建 API Token Token 名称 过期时间（可选） Token 只显示一次，请立即复制保存 atp_VnXEQtIa4znVmPy4EOI1_-R8evfpimSQ1WJI3qLc9R4 复制 关闭"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 test 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / API Token admin123 API Token 管理 用于 CI/CD 等自动化场景的身份认证 创建 Token 名称 Token 前缀 状态 最后使用 创建时间 操作 token_20260808212618 atp_VnXEQtI 有效 - 2026/8/8 21:29:55 撤销",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:29:51"
+    },
+    {
+      "id": "TC13",
+      "desc": "异常现象确认：API 测试页「新建」按钮点击无响应",
+      "step": "项目详情 → API 测试页 → hover 新建按钮 → 点击 → 观察弹窗/跳转/DOM 变化",
+      "expect": "点击「新建」应弹出对话框或跳转；若无响应则确认异常（OBS 候选）",
+      "result": "精确复核：点击「新建」后 2s，无弹窗、无新建表单、无 drawer、URL 未变、无 POST/PUT/DELETE 请求，页面状态完全无变化 → 确认异常",
+      "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/api",
+      "title": "自动化测试平台",
+      "verdict": "FAIL",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC13.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/api-testcases?page=1&page_size=20&type=api",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "hints": [
+        "OBS 候选确认：API 测试页「新建」按钮点击无响应（精确状态对比：before==after，无弹窗/无跳转/无写请求）",
+        "hover tooltip=[]",
+        "URL变化=True；弹窗出现=False；DOM变化=True",
+        "复核截图 recheck-TC13.png"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 test 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / API 测试 admin123 API 测试 新建 全部 API 接口 请求方法 状态 查询 用例名称 接口 方法 状态 标签 步骤数 操作 暂无 API 用例 新建接口定义 新建 API 用例",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:29:51"
+    },
+    {
+      "id": "TC14",
+      "desc": "异常现象确认：CI/CD 页面两表格表头混排",
+      "step": "项目详情 → 设置 → CI/CD 集成 (/settings/ci) → 检查最近 CI 触发表格列头",
+      "expect": "「最近 CI 触发」应只显示 ID/触发/套件/状态/时间/操作；若混入 API Token 列则异常（OBS 候选）",
+      "result": "表头=['名称', 'Token 前缀', '状态', '最后使用', '创建时间', '操作', 'ID', '触发', '套件', '状态', '时间', '操作']；含API Token列=True；含CI列=True；疑似混排=True",
+      "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/settings/ci",
+      "title": "自动化测试平台",
+      "verdict": "FAIL",
+      "screenshot": "C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-TC14.png",
+      "api_responses": [
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/api-tokens",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/environments?page_size=100",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/executions?page=1&page_size=10&trigger=ci",
+          "status": 200,
+          "method": "GET"
+        },
+        {
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "status": 200,
+          "method": "GET"
+        }
+      ],
+      "hints": [
+        "OBS 候选确认：CI/CD 页面两表格表头混排",
+        "表头=[\"名称\", \"Token 前缀\", \"状态\", \"最后使用\", \"创建时间\", \"操作\", \"ID\", \"触发\", \"套件\", \"状态\", \"时间\", \"操作\"]"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖 测试平台 仪表盘 项目管理 设备管理 当前项目 test 全部用例 Web 测试 API 测试 移动测试 测试套件 执行记录 AI 测试助手 测试报告 关键字库 测试环境 设置 定时任务 首页 / CI/CD 集成 admin123 ⚙️ CI/CD 集成 CI 配置 启用 CI/CD 集成 默认环境 不指定 默认超时（秒） API Token API Token 管理 用于 CI/CD 等自动化场景的身份认证 创建 Token 名称 Token 前缀 状态 最后使用 创建时间 操作 token_20260808212618 atp_VnXEQtI 有效 - 2026/8/8 21:29:55 撤销 快速集成 curl 命令 GitHub Actions GitLab CI Jenkins 📋 复制 最近 CI 触发 ID 触发 套件 状态 时间 操作 暂无数据",
+      "script": "explore-cases-v1.py",
+      "run_at": "2026-08-08 21:29:51"
+    }
+  ]
+}

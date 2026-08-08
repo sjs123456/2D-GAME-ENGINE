@@ -1,0 +1,950 @@
+[
+  {
+    "module": "全部用例",
+    "features": [
+      "输入框",
+      "按钮区",
+      "筛选下拉"
+    ],
+    "forms": [
+      {
+        "name": "批量导入用例",
+        "trigger_button": "批量导入",
+        "fields": [
+          {
+            "name": "导入方式",
+            "required": false,
+            "controls": [
+              "input",
+              "radio"
+            ],
+            "input_name": "el-id-8963-24"
+          },
+          {
+            "name": "JSON 数据",
+            "required": false,
+            "controls": [
+              "textarea"
+            ]
+          },
+          {
+            "name": "重名处理",
+            "required": false,
+            "controls": [
+              "input",
+              "radio"
+            ],
+            "input_name": "el-id-8963-27"
+          }
+        ],
+        "buttons": [
+          "取消",
+          "开始导入"
+        ],
+        "screenshot": ".reasonix/tmp/explore-sub-全部用例-批量导入.png"
+      }
+    ],
+    "list_actions": [],
+    "row_actions": [],
+    "notes": [
+      "空状态: 暂无用例 创建第一个用例"
+    ],
+    "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases",
+    "title": "自动化测试平台",
+    "h2": "用例管理",
+    "breadcrumb": "首页 / 用例管理",
+    "inputs": [
+      {
+        "type": "text",
+        "class": "el-select__input"
+      },
+      {
+        "type": "text",
+        "class": "el-select__input"
+      },
+      {
+        "type": "text",
+        "placeholder": "搜索用例名称...",
+        "class": "el-input__inner"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "批量导入",
+        "class": "el-button"
+      },
+      {
+        "text": "新建用例",
+        "class": "el-button el-button--primary"
+      },
+      {
+        "text": "创建第一个用例",
+        "class": "el-button el-button--primary"
+      }
+    ],
+    "selects": [
+      "el-select filter-item",
+      "el-select filter-item"
+    ],
+    "tables": {
+      "headers": [],
+      "row_count": 0
+    },
+    "pagination": {
+      "exists": false,
+      "text": ""
+    },
+    "screenshot": ".reasonix/tmp/explore-sub-全部用例.png"
+  },
+  {
+    "module": "Web测试",
+    "features": [
+      "输入框",
+      "按钮区",
+      "筛选下拉"
+    ],
+    "forms": [
+      {
+        "name": "批量导入用例",
+        "trigger_button": "批量导入",
+        "fields": [
+          {
+            "name": "导入方式",
+            "required": false,
+            "controls": [
+              "input",
+              "radio"
+            ],
+            "input_name": "el-id-3429-24"
+          },
+          {
+            "name": "JSON 数据",
+            "required": false,
+            "controls": [
+              "textarea"
+            ]
+          },
+          {
+            "name": "重名处理",
+            "required": false,
+            "controls": [
+              "input",
+              "radio"
+            ],
+            "input_name": "el-id-3429-27"
+          }
+        ],
+        "buttons": [
+          "取消",
+          "开始导入"
+        ],
+        "screenshot": ".reasonix/tmp/explore-sub-Web测试-批量导入.png"
+      }
+    ],
+    "list_actions": [],
+    "row_actions": [],
+    "notes": [
+      "空状态: 暂无用例 创建第一个用例"
+    ],
+    "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases?type=web",
+    "title": "自动化测试平台",
+    "h2": "用例管理",
+    "breadcrumb": "首页 / 用例管理",
+    "inputs": [
+      {
+        "type": "text",
+        "class": "el-select__input"
+      },
+      {
+        "type": "text",
+        "class": "el-select__input"
+      },
+      {
+        "type": "text",
+        "placeholder": "搜索用例名称...",
+        "class": "el-input__inner"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "批量导入",
+        "class": "el-button"
+      },
+      {
+        "text": "新建用例",
+        "class": "el-button el-button--primary"
+      },
+      {
+        "text": "创建第一个用例",
+        "class": "el-button el-button--primary"
+      }
+    ],
+    "selects": [
+      "el-select filter-item",
+      "el-select filter-item"
+    ],
+    "tables": {
+      "headers": [],
+      "row_count": 0
+    },
+    "pagination": {
+      "exists": false,
+      "text": ""
+    },
+    "screenshot": ".reasonix/tmp/explore-sub-Web测试.png"
+  },
+  {
+    "module": "API测试",
+    "features": [
+      "数据表格",
+      "输入框",
+      "按钮区",
+      "筛选下拉"
+    ],
+    "forms": [],
+    "list_actions": [],
+    "row_actions": [],
+    "notes": [
+      "空状态: 暂无 API 用例",
+      "「新建」未弹窗未跳转"
+    ],
+    "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/api",
+    "title": "自动化测试平台",
+    "h2": "API 测试",
+    "breadcrumb": "首页 / API 测试",
+    "inputs": [
+      {
+        "type": "text",
+        "placeholder": "搜索用例名称",
+        "class": "el-input__inner"
+      },
+      {
+        "type": "text",
+        "class": "el-select__input"
+      },
+      {
+        "type": "text",
+        "class": "el-select__input"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "新建",
+        "class": "el-button el-button--primary el-tooltip__trigger"
+      },
+      {
+        "text": "查询",
+        "class": "el-button"
+      }
+    ],
+    "selects": [
+      "el-select filter-item",
+      "el-select filter-item"
+    ],
+    "tables": {
+      "headers": [
+        "用例名称",
+        "接口",
+        "方法",
+        "状态",
+        "标签",
+        "步骤数",
+        "操作"
+      ],
+      "row_count": 0
+    },
+    "pagination": {
+      "exists": false,
+      "text": ""
+    },
+    "screenshot": ".reasonix/tmp/explore-sub-API测试.png"
+  },
+  {
+    "module": "移动测试",
+    "features": [
+      "输入框",
+      "按钮区",
+      "筛选下拉"
+    ],
+    "forms": [
+      {
+        "name": "批量导入用例",
+        "trigger_button": "批量导入",
+        "fields": [
+          {
+            "name": "导入方式",
+            "required": false,
+            "controls": [
+              "input",
+              "radio"
+            ],
+            "input_name": "el-id-3565-24"
+          },
+          {
+            "name": "JSON 数据",
+            "required": false,
+            "controls": [
+              "textarea"
+            ]
+          },
+          {
+            "name": "重名处理",
+            "required": false,
+            "controls": [
+              "input",
+              "radio"
+            ],
+            "input_name": "el-id-3565-27"
+          }
+        ],
+        "buttons": [
+          "取消",
+          "开始导入"
+        ],
+        "screenshot": ".reasonix/tmp/explore-sub-移动测试-批量导入.png"
+      }
+    ],
+    "list_actions": [],
+    "row_actions": [],
+    "notes": [
+      "空状态: 暂无用例 创建第一个用例"
+    ],
+    "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/testcases?type=mobile",
+    "title": "自动化测试平台",
+    "h2": "用例管理",
+    "breadcrumb": "首页 / 用例管理",
+    "inputs": [
+      {
+        "type": "text",
+        "class": "el-select__input"
+      },
+      {
+        "type": "text",
+        "class": "el-select__input"
+      },
+      {
+        "type": "text",
+        "placeholder": "搜索用例名称...",
+        "class": "el-input__inner"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "批量导入",
+        "class": "el-button"
+      },
+      {
+        "text": "新建用例",
+        "class": "el-button el-button--primary"
+      },
+      {
+        "text": "创建第一个用例",
+        "class": "el-button el-button--primary"
+      }
+    ],
+    "selects": [
+      "el-select filter-item",
+      "el-select filter-item"
+    ],
+    "tables": {
+      "headers": [],
+      "row_count": 0
+    },
+    "pagination": {
+      "exists": false,
+      "text": ""
+    },
+    "screenshot": ".reasonix/tmp/explore-sub-移动测试.png"
+  },
+  {
+    "module": "测试套件",
+    "features": [
+      "输入框",
+      "按钮区"
+    ],
+    "forms": [],
+    "list_actions": [],
+    "row_actions": [],
+    "notes": [
+      "空状态: 暂无套件 创建第一个套件",
+      "「新建套件」跳转到独立页面: http://123.56.21.178:8080/projects/undefined/suites/new",
+      "「新建套件」处理异常: Locator.inner_text: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\""
+    ],
+    "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/suites",
+    "title": "自动化测试平台",
+    "h2": "测试套件",
+    "breadcrumb": "首页 / 测试套件",
+    "inputs": [
+      {
+        "type": "text",
+        "placeholder": "搜索套件名称...",
+        "class": "el-input__inner"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "新建套件",
+        "class": "el-button el-button--primary"
+      },
+      {
+        "text": "创建第一个套件",
+        "class": "el-button el-button--primary"
+      }
+    ],
+    "selects": [],
+    "tables": {
+      "headers": [],
+      "row_count": 0
+    },
+    "pagination": {
+      "exists": false,
+      "text": ""
+    },
+    "create_page_url": "http://123.56.21.178:8080/projects/undefined/suites/new",
+    "create_page_h2": "新建套件",
+    "screenshot": ".reasonix/tmp/explore-sub-测试套件.png"
+  },
+  {
+    "module": "执行记录",
+    "features": [
+      "输入框",
+      "按钮区",
+      "筛选下拉"
+    ],
+    "forms": [],
+    "list_actions": [],
+    "row_actions": [],
+    "notes": [
+      "空状态: 暂无执行记录"
+    ],
+    "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/executions",
+    "title": "自动化测试平台",
+    "h2": "执行记录",
+    "breadcrumb": "首页 / 执行记录",
+    "inputs": [
+      {
+        "type": "text",
+        "class": "el-select__input"
+      },
+      {
+        "type": "text",
+        "class": "el-select__input"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "刷新",
+        "class": "el-button"
+      }
+    ],
+    "selects": [
+      "el-select filter-item",
+      "el-select filter-item"
+    ],
+    "tables": {
+      "headers": [],
+      "row_count": 0
+    },
+    "pagination": {
+      "exists": false,
+      "text": ""
+    },
+    "screenshot": ".reasonix/tmp/explore-sub-执行记录.png"
+  },
+  {
+    "module": "AI测试助手",
+    "features": [
+      "按钮区"
+    ],
+    "forms": [],
+    "list_actions": [],
+    "row_actions": [],
+    "notes": [
+      "「📝 生成用例」未弹窗未跳转"
+    ],
+    "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/ai-assistant",
+    "title": "自动化测试平台",
+    "h2": "🤖 AI 测试助手",
+    "breadcrumb": "首页 / AI 测试助手",
+    "inputs": [],
+    "buttons": [
+      {
+        "text": "清空对话",
+        "class": "el-button el-button--small is-disabled"
+      },
+      {
+        "text": "📝 生成用例",
+        "class": "el-button el-button--small"
+      },
+      {
+        "text": "🔍 分析失败",
+        "class": "el-button el-button--small"
+      },
+      {
+        "text": "📊 生成数据",
+        "class": "el-button el-button--small"
+      },
+      {
+        "text": "🔧 修复定位器",
+        "class": "el-button el-button--small"
+      }
+    ],
+    "selects": [],
+    "tables": {
+      "headers": [],
+      "row_count": 0
+    },
+    "pagination": {
+      "exists": false,
+      "text": ""
+    },
+    "screenshot": ".reasonix/tmp/explore-sub-AI测试助手.png"
+  },
+  {
+    "module": "测试报告",
+    "features": [
+      "输入框",
+      "按钮区",
+      "筛选下拉"
+    ],
+    "forms": [],
+    "list_actions": [],
+    "row_actions": [],
+    "notes": [
+      "空状态: 暂无测试报告 去触发执行"
+    ],
+    "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/reports",
+    "title": "自动化测试平台",
+    "h2": "测试报告",
+    "breadcrumb": "首页 / 测试报告",
+    "inputs": [
+      {
+        "type": "text",
+        "class": "el-select__input is-small"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "去触发执行",
+        "class": "el-button el-button--primary"
+      }
+    ],
+    "selects": [
+      "el-select el-select--small"
+    ],
+    "tables": {
+      "headers": [],
+      "row_count": 0
+    },
+    "pagination": {
+      "exists": false,
+      "text": ""
+    },
+    "screenshot": ".reasonix/tmp/explore-sub-测试报告.png"
+  },
+  {
+    "module": "关键字库",
+    "features": [
+      "输入框",
+      "按钮区",
+      "筛选下拉"
+    ],
+    "forms": [
+      {
+        "name": "添加关键字",
+        "trigger_button": "添加关键字",
+        "fields": [
+          {
+            "name": "关键字名称",
+            "required": true,
+            "controls": [
+              "input"
+            ]
+          },
+          {
+            "name": "类型",
+            "required": false,
+            "controls": [
+              "input",
+              "select"
+            ]
+          },
+          {
+            "name": "描述",
+            "required": false,
+            "controls": [
+              "input"
+            ]
+          },
+          {
+            "name": "Python 代码",
+            "required": true,
+            "controls": [
+              "textarea"
+            ]
+          },
+          {
+            "name": "参数定义（JSON）",
+            "required": false,
+            "controls": [
+              "textarea"
+            ]
+          }
+        ],
+        "buttons": [
+          "取消",
+          "确认创建"
+        ],
+        "screenshot": ".reasonix/tmp/explore-sub-关键字库-添加关键字.png"
+      }
+    ],
+    "list_actions": [],
+    "row_actions": [],
+    "notes": [
+      "空状态: 暂无关键字 添加第一个关键字"
+    ],
+    "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/keywords",
+    "title": "自动化测试平台",
+    "h2": "关键字库",
+    "breadcrumb": "首页 / 关键字库",
+    "inputs": [
+      {
+        "type": "text",
+        "class": "el-select__input"
+      },
+      {
+        "type": "text",
+        "placeholder": "搜索关键字名称...",
+        "class": "el-input__inner"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "添加关键字",
+        "class": "el-button el-button--primary"
+      },
+      {
+        "text": "添加第一个关键字",
+        "class": "el-button el-button--primary"
+      }
+    ],
+    "selects": [
+      "el-select filter-item"
+    ],
+    "tables": {
+      "headers": [],
+      "row_count": 0
+    },
+    "pagination": {
+      "exists": false,
+      "text": ""
+    },
+    "screenshot": ".reasonix/tmp/explore-sub-关键字库.png"
+  },
+  {
+    "module": "测试环境",
+    "features": [
+      "输入框",
+      "按钮区"
+    ],
+    "forms": [
+      {
+        "name": "新建环境",
+        "trigger_button": "新建环境",
+        "fields": [
+          {
+            "name": "环境名称",
+            "required": true,
+            "controls": [
+              "input"
+            ],
+            "placeholder": "例如: 测试环境"
+          },
+          {
+            "name": "环境类型",
+            "required": false,
+            "controls": [
+              "input",
+              "select"
+            ]
+          },
+          {
+            "name": "基础 URL",
+            "required": true,
+            "controls": [
+              "input"
+            ],
+            "placeholder": "https://staging.api.example.com"
+          },
+          {
+            "name": "全局超时 (ms)",
+            "required": false,
+            "controls": [
+              "input"
+            ]
+          }
+        ],
+        "buttons": [
+          "+ 添加 Header",
+          "+ 添加变量",
+          "取消",
+          "确认创建"
+        ],
+        "screenshot": ".reasonix/tmp/explore-sub-测试环境-新建环境.png"
+      }
+    ],
+    "list_actions": [],
+    "row_actions": [],
+    "notes": [
+      "空状态: 暂无环境配置 新建环境"
+    ],
+    "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/environments",
+    "title": "自动化测试平台",
+    "h2": "测试环境配置",
+    "breadcrumb": "首页 / 测试环境",
+    "inputs": [
+      {
+        "type": "text",
+        "placeholder": "搜索环境名称...",
+        "class": "el-input__inner"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "新建环境",
+        "class": "el-button el-button--primary"
+      },
+      {
+        "text": "新建环境",
+        "class": "el-button el-button--primary"
+      }
+    ],
+    "selects": [],
+    "tables": {
+      "headers": [],
+      "row_count": 0
+    },
+    "pagination": {
+      "exists": false,
+      "text": ""
+    },
+    "screenshot": ".reasonix/tmp/explore-sub-测试环境.png"
+  },
+  {
+    "module": "定时任务",
+    "features": [
+      "按钮区"
+    ],
+    "forms": [],
+    "list_actions": [],
+    "row_actions": [],
+    "notes": [
+      "空状态: 暂无定时任务 创建第一个定时任务",
+      "「新建定时任务」处理异常: Locator.inner_text: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\""
+    ],
+    "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/schedules",
+    "title": "自动化测试平台",
+    "h2": "定时任务",
+    "breadcrumb": "首页 / 定时任务",
+    "inputs": [],
+    "buttons": [
+      {
+        "text": "新建定时任务",
+        "class": "el-button el-button--primary"
+      },
+      {
+        "text": "创建第一个定时任务",
+        "class": "el-button el-button--primary"
+      }
+    ],
+    "selects": [],
+    "tables": {
+      "headers": [],
+      "row_count": 0
+    },
+    "pagination": {
+      "exists": false,
+      "text": ""
+    },
+    "screenshot": ".reasonix/tmp/explore-sub-定时任务.png"
+  },
+  {
+    "module": "API Token",
+    "features": [
+      "数据表格",
+      "按钮区"
+    ],
+    "forms": [
+      {
+        "name": "创建 API Token",
+        "trigger_button": "创建 Token",
+        "fields": [
+          {
+            "name": "Token 名称",
+            "required": true,
+            "controls": [
+              "input"
+            ],
+            "placeholder": "例如: github-ci-token"
+          },
+          {
+            "name": "过期时间（可选）",
+            "required": false,
+            "controls": [
+              "input",
+              "date"
+            ],
+            "placeholder": "永不过期"
+          }
+        ],
+        "buttons": [
+          "关闭",
+          "创建"
+        ],
+        "screenshot": ".reasonix/tmp/explore-sub-API Token-创建 Token.png"
+      }
+    ],
+    "list_actions": [],
+    "row_actions": [],
+    "notes": [
+      "空状态: 暂无数据"
+    ],
+    "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/settings/tokens",
+    "title": "自动化测试平台",
+    "h2": "API Token 管理",
+    "breadcrumb": "首页 / API Token",
+    "inputs": [],
+    "buttons": [
+      {
+        "text": "创建 Token",
+        "class": "el-button el-button--primary"
+      }
+    ],
+    "selects": [],
+    "tables": {
+      "headers": [
+        "名称",
+        "Token 前缀",
+        "状态",
+        "最后使用",
+        "创建时间",
+        "操作"
+      ],
+      "row_count": 0
+    },
+    "pagination": {
+      "exists": false,
+      "text": ""
+    },
+    "screenshot": ".reasonix/tmp/explore-sub-API Token.png"
+  },
+  {
+    "module": "CI/CD 集成",
+    "features": [
+      "数据表格",
+      "输入框",
+      "按钮区",
+      "筛选下拉"
+    ],
+    "forms": [
+      {
+        "name": "创建 API Token",
+        "trigger_button": "创建 Token",
+        "fields": [
+          {
+            "name": "Token 名称",
+            "required": true,
+            "controls": [
+              "input"
+            ],
+            "placeholder": "例如: github-ci-token"
+          },
+          {
+            "name": "过期时间（可选）",
+            "required": false,
+            "controls": [
+              "input",
+              "date"
+            ],
+            "placeholder": "永不过期"
+          }
+        ],
+        "buttons": [
+          "关闭",
+          "创建"
+        ],
+        "screenshot": ".reasonix/tmp/explore-sub-CI/CD 集成-创建 Token.png"
+      }
+    ],
+    "list_actions": [],
+    "row_actions": [],
+    "notes": [
+      "空状态: 暂无数据"
+    ],
+    "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/settings/ci",
+    "title": "自动化测试平台",
+    "h2": "⚙️ CI/CD 集成",
+    "breadcrumb": "首页 / CI/CD 集成",
+    "inputs": [
+      {
+        "type": "checkbox",
+        "class": "el-switch__input"
+      },
+      {
+        "type": "text",
+        "class": "el-select__input"
+      },
+      {
+        "type": "number",
+        "class": "el-input__inner"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "创建 Token",
+        "class": "el-button el-button--primary"
+      },
+      {
+        "text": "📋 复制",
+        "class": "el-button el-button--small copy-btn"
+      },
+      {
+        "text": "📋 复制",
+        "class": "el-button el-button--small copy-btn"
+      },
+      {
+        "text": "📋 复制",
+        "class": "el-button el-button--small copy-btn"
+      },
+      {
+        "text": "📋 复制",
+        "class": "el-button el-button--small copy-btn"
+      }
+    ],
+    "selects": [
+      "el-select"
+    ],
+    "tables": {
+      "headers": [
+        "名称",
+        "Token 前缀",
+        "状态",
+        "最后使用",
+        "创建时间",
+        "操作",
+        "ID",
+        "触发",
+        "套件",
+        "状态",
+        "时间",
+        "操作"
+      ],
+      "row_count": 0
+    },
+    "pagination": {
+      "exists": false,
+      "text": ""
+    },
+    "screenshot": ".reasonix/tmp/explore-sub-CI/CD 集成.png"
+  }
+]

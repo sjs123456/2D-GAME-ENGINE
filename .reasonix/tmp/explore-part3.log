@@ -1,0 +1,22 @@
+[OK] 使用存储登录态
+TC11 | PASS    | 校验提示=[]；toast=['服务器内部错误', '操作失败']；弹窗仍打开=True
+TC12 | PASS    | toast=[]；表含token=True
+TC13 | PASS    | 点击后：URL未变=True、弹窗出现=False、DOM变化=True
+TC14 | FAIL    | 表头=['名称', 'Token 前缀', '状态', '最后使用', '创建时间', '操作', 'ID', '触发', '套件', '状态', '时间', '操作']；含API
+最终输出: C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-test-results.json
+
+===== 汇总 =====
+TC01 | PASS    | 项目管理：新建项目成功（唯一测试项目名） | 创建成功；toast=['项目创建成功']；详情含项目名=True、admin123=True
+TC02 | PASS    | 项目管理：新建项目必填校验（项目名称为空） | 校验提示=['请输入项目名称']；toast=[]；弹窗仍打开=True；卡片数 5->5
+TC03 | PASS    | 用例管理：新建 Web 用例成功（保存并关闭） | toast=['用例创建成功']；URL=http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-
+TC04 | PASS    | 用例管理：新建用例必填校验（用例名称为空） | 校验提示=['请输入用例名称']；toast=[]；URL仍在新建页=True
+TC05 | FAIL    | 测试套件：新建套件 + 已知缺陷回归（undefined | 缺陷复现：/projects/undefined/suites/new；表单可填写；保存后toast=['project_id: Input should be
+TC06 | PASS    | 测试套件：新建套件必填校验（套件名称为空） | 校验提示=['请输入套件名称']；toast=[]；URL=http://123.56.21.178:8080/projects/undefined/suite
+TC07 | PASS    | 测试环境：新建环境成功 | toast=['环境已创建']；表含env=True、Staging=True、URL=True
+TC08 | PASS    | 测试环境：新建环境必填校验（基础 URL 为空） | 校验提示=['请输入基础 URL']；toast=[]；弹窗仍打开=True
+TC09 | PASS    | 关键字库：添加关键字成功 | toast=['关键字创建成功']；关键字卡片含kw=True（kw_20260808212618 显示于 .keyword-card） ；代码展示=True（
+TC10 | FAIL    | 定时任务：新建定时任务成功 | 缺陷复现：新建定时任务 POST /api/v1/projects/.../schedules 返回 500（服务器内部错误）；toast=['服务器内部错误'
+TC11 | PASS    | 定时任务：新建必填校验（Cron 表达式为空） | 校验提示=[]；toast=['服务器内部错误', '操作失败']；弹窗仍打开=True
+TC12 | PASS    | API Token：创建 Token 成功 | toast=[]；表含token=True
+TC13 | PASS    | 异常现象确认：API 测试页「新建」按钮点击无响应 | 点击后：URL未变=True、弹窗出现=False、DOM变化=True
+TC14 | FAIL    | 异常现象确认：CI/CD 页面两表格表头混排 | 表头=['名称', 'Token 前缀', '状态', '最后使用', '创建时间', '操作', 'ID', '触发', '套件', '状态', '时间', 

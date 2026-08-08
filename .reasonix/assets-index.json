@@ -41,5 +41,19 @@
     ],
     "latest_version": 4,
     "next_version": 5
+  },
+  "explore": {
+    "scripts": [
+      "explore-cases-v1.py",
+      "case-runner.py"
+    ],
+    "results": [
+      "explore-test-results.json",
+      "explore-test-results-v2.json"
+    ],
+    "screenshots": 17,
+    "reports": [],
+    "latest_version": 2,
+    "next_version": 3
   }
 }

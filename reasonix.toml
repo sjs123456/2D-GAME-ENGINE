@@ -11,4 +11,9 @@ name    = "test-assets-mcp"
 command = "python"
 args    = ["C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/mcp/test-assets-mcp.py"]
 
+[[plugins]]
+name    = "case-runner-mcp"
+command = "python"
+args    = ["C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/mcp/case-runner.py", "--mcp"]
+
 

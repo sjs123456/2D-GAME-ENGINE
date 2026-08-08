@@ -1,0 +1,193 @@
+[
+  {
+    "id": "TC01",
+    "priority": "P0",
+    "desc": "项目管理：新建项目成功（唯一测试项目名）",
+    "precondition": "已登录 admin123，无同名项目 proj_<ts>",
+    "input": {
+      "项目名称": "proj_<ts>",
+      "项目描述": "自动化回归测试项目-<ts>",
+      "Git 仓库地址": "https://github.com/team/proj_<ts>.git"
+    },
+    "step": "进入 /projects → 点击「新建项目」→ 填写项目名称/描述/Git 地址 → 点击「确认创建」",
+    "expect": "toast 出现「项目创建成功」类成功提示；项目卡片列表出现 proj_<ts>；页面不报错",
+    "verify": "在搜索框输入 proj_<ts> 可搜索到该卡片；点击卡片进入详情，详情中项目名称=proj_<ts>、拥有者=admin123"
+  },
+  {
+    "id": "TC02",
+    "priority": "P0",
+    "desc": "项目管理：新建项目必填校验（项目名称为空）",
+    "precondition": "已登录 admin123",
+    "input": {
+      "项目名称": "",
+      "项目描述": ""
+    },
+    "step": "进入 /projects → 点击「新建项目」→ 项目名称留空 → 点击「确认创建」",
+    "expect": "出现「请输入项目名称」类提示或「确认创建」按钮为禁用态；弹窗不关闭、无创建成功 toast；未产生名称为空的项目",
+    "verify": "列表项目总数不增加；无新建 API 成功请求（可观察网络）"
+  },
+  {
+    "id": "TC03",
+    "priority": "P0",
+    "desc": "用例管理：新建 Web 用例成功（保存并关闭）",
+    "precondition": "已登录 admin123，进入项目详情（项目 ab2fb177-e302-43bf-a146-6c1b6b9a771c）",
+    "input": {
+      "用例名称": "case_<ts>",
+      "测试类型": "Web 测试",
+      "优先级": "P1 (高)",
+      "状态": "活跃",
+      "超时(秒)": 60,
+      "重试次数": 0,
+      "前置条件": "前置条件-<ts>"
+    },
+    "step": "项目详情 → 「用例」tab → 点击「新建用例」→ 填写字段 → 点击「保存并关闭」",
+    "expect": "toast 出现保存成功提示；跳转回用例列表；用例列表出现 case_<ts>",
+    "verify": "表格中存在 case_<ts>，类型列=Web 测试、状态=活跃、优先级=P1"
+  },
+  {
+    "id": "TC04",
+    "priority": "P0",
+    "desc": "用例管理：新建用例必填校验（用例名称为空）",
+    "precondition": "已登录 admin123，进入项目详情",
+    "input": {
+      "用例名称": ""
+    },
+    "step": "项目详情 → 「用例」tab → 点击「新建用例」→ 用例名称留空（其余保持默认）→ 点击「保存并关闭」",
+    "expect": "出现「请输入用例名称」类提示或保存按钮禁用；页面不跳转、无保存成功 toast；未创建无名称用例",
+    "verify": "URL 仍停留在 /testcases/new/web；用例列表无新增空名用例"
+  },
+  {
+    "id": "TC05",
+    "priority": "P0",
+    "desc": "测试套件：新建套件 + 已知缺陷回归（undefined 项目 ID）",
+    "precondition": "已登录 admin123，进入项目详情",
+    "input": {
+      "套件名称": "suite_<ts>",
+      "描述": "套件-<ts>"
+    },
+    "step": "项目详情 → 「套件」tab → 点击「新建套件」→ 记录跳转后的 URL → 填写套件名称/描述 → 点击「保存套件」",
+    "expect": "点击「新建套件」后 URL 应为 /projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/suites/new；若 URL 为 /projects/undefined/suites/new 或侧边栏出现「当前项目 undefined」则判定为复现缺陷；表单仍可正常加载填写；保存后套件列表出现 suite_<ts>（若保存因 project_id 异常失败，记录为缺陷影响）",
+    "verify": "记录实际跳转 URL 是否含 undefined；保存结果（成功/失败）；列表是否存在 suite_<ts>",
+    "关联缺陷": "OBS 候选：点击「新建套件」跳转 URL 项目 ID 丢失为 undefined"
+  },
+  {
+    "id": "TC06",
+    "priority": "P1",
+    "desc": "测试套件：新建套件必填校验（套件名称为空）",
+    "precondition": "已登录 admin123，进入项目详情",
+    "input": {
+      "套件名称": ""
+    },
+    "step": "项目详情 → 「套件」tab → 点击「新建套件」→ 套件名称留空 → 点击「保存套件」",
+    "expect": "出现「请输入套件名称」类提示或「保存套件」按钮禁用；不跳转、无保存成功 toast；未创建空名套件",
+    "verify": "套件列表无空名套件；无保存成功请求"
+  },
+  {
+    "id": "TC07",
+    "priority": "P0",
+    "desc": "测试环境：新建环境成功",
+    "precondition": "已登录 admin123，进入项目详情",
+    "input": {
+      "环境名称": "env_<ts>",
+      "环境类型": "Staging",
+      "基础 URL": "https://staging-<ts>.example.com",
+      "全局超时 (ms)": 30000
+    },
+    "step": "项目详情 → 「环境」页 → 点击「新建环境」→ 填写环境名称/类型/基础 URL/超时 → 点击「确认创建」",
+    "expect": "toast 出现「环境创建成功」类提示；环境列表出现 env_<ts>",
+    "verify": "搜索 env_<ts> 可查到；环境类型=Staging、基础 URL=https://staging-<ts>.example.com"
+  },
+  {
+    "id": "TC08",
+    "priority": "P1",
+    "desc": "测试环境：新建环境必填校验（基础 URL 为空）",
+    "precondition": "已登录 admin123，进入项目详情",
+    "input": {
+      "环境名称": "env_empty_url_<ts>",
+      "基础 URL": ""
+    },
+    "step": "项目详情 → 「环境」页 → 点击「新建环境」→ 环境名称填写 env_empty_url_<ts>、基础 URL 留空 → 点击「确认创建」",
+    "expect": "出现「请输入基础 URL」类提示或「确认创建」按钮禁用；弹窗不关闭、无成功 toast；未创建环境",
+    "verify": "环境列表不出现 env_empty_url_<ts>；无创建成功请求"
+  },
+  {
+    "id": "TC09",
+    "priority": "P1",
+    "desc": "关键字库：添加关键字成功",
+    "precondition": "已登录 admin123，进入项目详情",
+    "input": {
+      "关键字名称": "kw_<ts>",
+      "类型": "自定义",
+      "描述": "关键字-<ts>",
+      "Python 代码": "def kw_<ts>():\n    return 'ok'"
+    },
+    "step": "项目详情 → 「关键字库」→ 点击「添加关键字」→ 填写关键字名称/类型/描述/Python 代码 → 点击「确认创建」",
+    "expect": "toast 出现添加成功提示；关键字列表出现 kw_<ts>",
+    "verify": "搜索 kw_<ts> 可查到；Python 代码内容展示正确"
+  },
+  {
+    "id": "TC10",
+    "priority": "P1",
+    "desc": "定时任务：新建定时任务成功",
+    "precondition": "已登录 admin123，进入项目详情；存在至少一个已创建套件（优先复用 TC05 的 suite_<ts>；若 TC05 因 undefined 缺陷保存失败，则先通过有效项目 ID 路径手动创建套件后再执行本用例）",
+    "input": {
+      "任务名称": "sched_<ts>",
+      "Cron 表达式": "0 8 * * *",
+      "关联套件": "suite_<ts>",
+      "描述": "定时-<ts>",
+      "启用": true
+    },
+    "step": "项目详情 → 「定时任务」→ 点击「新建定时任务」→ 填写任务名称/Cron/描述并选择关联套件 suite_<ts> → 点击「确认创建」",
+    "expect": "toast 出现「创建成功」类提示；定时任务列表出现 sched_<ts>",
+    "verify": "列表存在 sched_<ts>；Cron 表达式=0 8 * * *、关联套件=suite_<ts>、状态=启用"
+  },
+  {
+    "id": "TC11",
+    "priority": "P1",
+    "desc": "定时任务：新建必填校验（Cron 表达式为空）",
+    "precondition": "已登录 admin123，进入项目详情；存在至少一个已创建套件",
+    "input": {
+      "任务名称": "sched_empty_cron_<ts>",
+      "Cron 表达式": "",
+      "关联套件": "suite_<ts>"
+    },
+    "step": "项目详情 → 「定时任务」→ 点击「新建定时任务」→ Cron 表达式留空（其余必填填好）→ 点击「确认创建」",
+    "expect": "出现「请输入 Cron 表达式」类提示或「确认创建」按钮禁用；弹窗不关闭、无成功 toast；未创建任务",
+    "verify": "定时任务列表不出现 sched_empty_cron_<ts>；无创建成功请求"
+  },
+  {
+    "id": "TC12",
+    "priority": "P1",
+    "desc": "API Token：创建 Token 成功",
+    "precondition": "已登录 admin123，进入项目详情",
+    "input": {
+      "Token 名称": "token_<ts>",
+      "过期时间": "永不过期"
+    },
+    "step": "项目详情 → 「设置」→「API Token」→ 点击「创建 Token」→ 填写 Token 名称（过期时间保持默认永不过期）→ 点击「创建」",
+    "expect": "toast 出现创建成功提示（完整 Token 值仅创建时展示一次）；Token 列表出现 token_<ts>",
+    "verify": "表格存在 token_<ts>，状态=有效/启用；Token 前缀展示且完整值仅弹窗中出现一次"
+  },
+  {
+    "id": "TC13",
+    "priority": "P2",
+    "desc": "异常现象确认：API 测试页「新建」按钮点击无响应",
+    "precondition": "已登录 admin123，进入项目详情",
+    "input": {},
+    "step": "项目详情 → 「API 测试」页 → 点击「新建」按钮 → 观察是否有弹窗/跳转/页面变化 → 对按钮 hover 观察 tooltip",
+    "expect": "点击「新建」应弹出新建用例的对话框或跳转至新建页面；若点击后无弹窗、无跳转、无 tooltip、页面无任何 DOM 变化，则确认为异常现象",
+    "verify": "记录点击前后 URL/DOM/弹窗状态并截图；判断是否符合预期（异常则标注关联缺陷）",
+    "关联缺陷": "OBS 候选：API 测试页「新建」按钮点击无响应"
+  },
+  {
+    "id": "TC14",
+    "priority": "P2",
+    "desc": "异常现象确认：CI/CD 页面两表格表头混排",
+    "precondition": "已登录 admin123，进入项目详情",
+    "input": {},
+    "step": "项目详情 → 「设置」→「CI/CD 集成」(/settings/ci) → 检查「最近 CI 触发」表格的列头区域 → 逐列核对列名",
+    "expect": "「最近 CI 触发」表格应只显示列头：ID/触发/套件/状态/时间/操作；若页面表头同时混入 API Token 表格列（名称/Token 前缀/状态/最后使用/创建时间/操作），则确认为表头混排异常",
+    "verify": "截图记录表头区域；核对是否存在两套列头重叠/合并显示；判断是否确认异常",
+    "关联缺陷": "OBS 候选：CI/CD 页面 API Token 与最近 CI 触发两表格表头共享混排"
+  }
+]

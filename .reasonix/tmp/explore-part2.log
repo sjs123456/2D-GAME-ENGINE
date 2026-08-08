@@ -1,0 +1,7 @@
+[OK] 使用存储登录态
+TC06 | PASS    | 校验提示=['请输入套件名称']；toast=[]；URL=http://123.56.21.178:8080/projects/undefined/suites/new
+TC07 | PASS    | toast=['环境已创建']；表含env=True、Staging=True、URL=True
+TC08 | PASS    | 校验提示=['请输入基础 URL']；toast=[]；弹窗仍打开=True
+TC09 | PARTIAL | toast=['关键字创建成功']；表含kw=False；代码展示=False
+TC10 | PARTIAL | toast=['服务器内部错误', '操作失败']；表含sched=False、cron=False、套件=False、启用=False
+part2 输出: C:/Users/ahusj/claude-code-vibe/test-ds-v4-flash/.reasonix/tmp/explore-test-results-part2.json

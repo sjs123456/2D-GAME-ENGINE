@@ -1,0 +1,60 @@
+{
+  "ts": "20260808220417",
+  "run_at": "2026-08-08 22:04:39",
+  "script": "explore-cases.json",
+  "results": [
+    {
+      "id": "TC02",
+      "desc": "项目管理：新建项目必填校验（项目名称为空）",
+      "step": "goto(/projects) → click(button:has-text('新建项目')) → click(button:has-text('确认创建')) → expect()",
+      "expect": "提示「请输入项目名称」，弹窗不关闭，无创建请求",
+      "result": "所有断言通过",
+      "url": "http://123.56.21.178:8080/projects",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\explore-TC02.png",
+      "api_responses": [
+        {
+          "status": 200,
+          "url": "http://123.56.21.178:8080/api/v1/projects",
+          "method": "GET"
+        }
+      ],
+      "hints": [
+        "请输入项目名称"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖\n测试平台\n仪表盘\n项目管理\n设备管理\n首页\n/\n项目管理\nadmin123\n项目管理\n共 7 个项目\n新建项目\nproj_20260808220341\n\n自动化回归测试项目-20260808220341\n\n0\n用例\n0\n套件\nadmin123\n刚刚\nproj_20260808220245\n\n自动化回归测试项目-20260808220245\n\n0\n用例\n0\n套件\nadmin123\n1 分钟前\n",
+      "script": "case-runner.py",
+      "run_at": "2026-08-08 22:04:20"
+    },
+    {
+      "id": "TC13",
+      "desc": "API 测试：「新建」按钮无响应确认",
+      "step": "goto(/projects/{pid}/api) → click(button:has-text('新建')) → wait() → expect(.el-dialog)",
+      "expect": "点击「新建」应弹出对话框；无弹窗 = OBS-004 复现（FAIL）",
+      "result": "断言失败: 断言失败[visible]: Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\".el-dialog\") to be visible\n",
+      "url": "http://123.56.21.178:8080/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/api",
+      "title": "自动化测试平台",
+      "verdict": "FAIL",
+      "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\explore-TC13.png",
+      "api_responses": [
+        {
+          "status": 200,
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+          "method": "GET"
+        },
+        {
+          "status": 200,
+          "url": "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/api-testcases?page=1&page_size=20&type=api",
+          "method": "GET"
+        }
+      ],
+      "hints": [],
+      "dialogs": [],
+      "body_excerpt": "🤖\n测试平台\n仪表盘\n项目管理\n设备管理\n当前项目\ntest\n全部用例\nWeb 测试\nAPI 测试\n移动测试\n测试套件\n执行记录\nAI 测试助手\n测试报告\n关键字库\n测试环境\n设置\n定时任务\n首页\n/\nAPI 测试\nadmin123\nAPI 测试\n新建\n全部\nAPI 接口\n请求方法\n状态\n查询\n用例名称\n\t\n接口\n\t\n方法\n\t\n状态\n\t\n标签\n\t\n步骤数\n\t\n操作\n暂无 API 用例\n新建接口定",
+      "script": "case-runner.py",
+      "run_at": "2026-08-08 22:04:22"
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "module": "explore",
+    "title": "全站探索用例集 v1",
+    "base_url": "http://123.56.21.178:8080",
+    "project_id": "ab2fb177-e302-43bf-a146-6c1b6b9a771c",
+    "login": {
+      "url": "/login",
+      "username": "admin123",
+      "password": "Admin123",
+      "username_selector": "input[placeholder='请输入用户名']",
+      "password_selector": "input[placeholder='请输入密码']",
+      "submit_selector": "button.submit-btn",
+      "success_url": "/dashboard"
+    },
+    "ts_placeholder": "<ts>"
+  },
+  "cases": [
+    {
+      "id": "TC01", "priority": "P0",
+      "desc": "项目管理：新建项目成功（唯一测试项目名）",
+      "precondition": "已登录 admin123",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/projects"},
+        {"action": "click", "selector": "button:has-text('新建项目')"},
+        {"action": "fill", "selector": "input[placeholder='请输入项目名称']", "value": "proj_<ts>"},
+        {"action": "fill", "selector": "textarea", "value": "自动化回归测试项目-<ts>"},
+        {"action": "click", "selector": "button:has-text('确认创建')"},
+        {"action": "expect", "kind": "toast", "text": "项目创建成功"},
+        {"action": "expect", "kind": "visible", "selector": "text=proj_<ts>"}
+      ],
+      "expect": "toast「项目创建成功」；项目卡片列表出现 proj_<ts>"
+    },
+    {
+      "id": "TC02", "priority": "P0",
+      "desc": "项目管理：新建项目必填校验（项目名称为空）",
+      "precondition": "已登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/projects"},
+        {"action": "click", "selector": "button:has-text('新建项目')"},
+        {"action": "click", "selector": "button:has-text('确认创建')"},
+        {"action": "expect", "kind": "form_error", "text": "请输入项目名称"}
+      ],
+      "expect": "提示「请输入项目名称」，弹窗不关闭，无创建请求"
+    },
+    {
+      "id": "TC03", "priority": "P0",
+      "desc": "用例管理：新建 Web 用例成功",
+      "precondition": "已登录；进入项目详情",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/projects/{pid}/testcases?type=web"},
+        {"action": "click", "selector": "button:has-text('新建用例')"},
+        {"action": "fill", "selector": "input[placeholder='请输入用例名称']", "value": "case_<ts>"},
+        {"action": "fill", "selector": "input[placeholder='步骤说明']", "value": "打开首页并验证标题"},
+        {"action": "click", "selector": "button:has-text('保存并关闭')"},
+        {"action": "expect", "kind": "toast", "text": "用例创建成功"}
+      ],
+      "expect": "toast「用例创建成功」，POST /testcases 2xx"
+    },
+    {
+      "id": "TC04", "priority": "P0",
+      "desc": "用例管理：新建用例必填校验（用例名称为空）",
+      "precondition": "已登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/projects/{pid}/testcases?type=web"},
+        {"action": "click", "selector": "button:has-text('新建用例')"},
+        {"action": "click", "selector": "button:has-text('保存并关闭')"},
+        {"action": "expect", "kind": "form_error", "text": "请输入用例名称"}
+      ],
+      "expect": "提示「请输入用例名称」，不跳转、无成功提示"
+    },
+    {
+      "id": "TC05", "priority": "P0",
+      "desc": "测试套件：新建套件（已知 undefined 缺陷回归）",
+      "precondition": "已登录",
+      "semantic": "defect",
+      "defect": "BUG-002",
+      "steps": [
+        {"action": "goto", "url": "/projects/{pid}/suites"},
+        {"action": "click", "selector": "button:has-text('新建套件')"},
+        {"action": "expect", "kind": "url", "text": "undefined"}
+      ],
+      "expect": "缺陷判定：跳转 URL 含 undefined = BUG-002 复现（FAIL）；URL 为真实项目 ID = 已修复（PASS）"
+    },
+    {
+      "id": "TC06", "priority": "P1",
+      "desc": "测试套件：新建套件必填校验（套件名称为空）",
+      "precondition": "已登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/projects/{pid}/suites"},
+        {"action": "click", "selector": "button:has-text('新建套件')"},
+        {"action": "click", "selector": "button:has-text('保存套件')"},
+        {"action": "expect", "kind": "form_error", "text": "请输入套件名称"}
+      ],
+      "expect": "提示「请输入套件名称」"
+    },
+    {
+      "id": "TC07", "priority": "P0",
+      "desc": "测试环境：新建环境成功",
+      "precondition": "已登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/projects/{pid}/environments"},
+        {"action": "click", "selector": "button:has-text('新建环境')"},
+        {"action": "fill", "selector": "input[placeholder='例如: 测试环境']", "value": "env_<ts>"},
+        {"action": "fill", "selector": "input[placeholder='https://staging.api.example.com']", "value": "https://staging-<ts>.example.com"},
+        {"action": "click", "selector": "button:has-text('确认创建')"},
+        {"action": "expect", "kind": "toast", "text": "环境已创建"}
+      ],
+      "expect": "toast「环境已创建」，POST /environments 2xx"
+    },
+    {
+      "id": "TC08", "priority": "P1",
+      "desc": "测试环境：新建环境必填校验（基础 URL 为空）",
+      "precondition": "已登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/projects/{pid}/environments"},
+        {"action": "click", "selector": "button:has-text('新建环境')"},
+        {"action": "fill", "selector": "input[placeholder='例如: 测试环境']", "value": "env_bad_<ts>"},
+        {"action": "click", "selector": "button:has-text('确认创建')"},
+        {"action": "expect", "kind": "form_error", "text": "请输入基础 URL"}
+      ],
+      "expect": "提示「请输入基础 URL」，弹窗不关闭"
+    },
+    {
+      "id": "TC09", "priority": "P1",
+      "desc": "关键字库：添加关键字成功",
+      "precondition": "已登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/projects/{pid}/keywords"},
+        {"action": "click", "selector": "button:has-text('添加关键字')"},
+        {"action": "fill", "selector": "input[placeholder='请输入关键字名称']", "value": "kw_<ts>"},
+        {"action": "fill", "selector": "textarea", "value": "def kw_<ts>(): return 'ok'"},
+        {"action": "click", "selector": "button:has-text('确认创建')"},
+        {"action": "expect", "kind": "visible", "selector": "text=kw_<ts>"}
+      ],
+      "expect": "关键字卡片出现 kw_<ts>"
+    },
+    {
+      "id": "TC10", "priority": "P1",
+      "desc": "定时任务：新建定时任务（已知 500 缺陷回归）",
+      "precondition": "已登录；已存在可用套件（TC05 降级路径创建 suite_<ts>）",
+      "semantic": "normal",
+      "defect": "BUG-003",
+      "steps": [
+        {"action": "goto", "url": "/projects/{pid}/schedules"},
+        {"action": "click", "selector": "button:has-text('新建定时任务')"},
+        {"action": "fill", "selector": "input[placeholder='任务名称']", "value": "sched_<ts>"},
+        {"action": "fill", "selector": "input[placeholder='0 8 * * *']", "value": "*/5 * * * *"},
+        {"action": "select_first", "selector": "select"},
+        {"action": "click", "selector": "button:has-text('确认创建')"},
+        {"action": "expect", "kind": "toast", "text": "创建成功"}
+      ],
+      "expect": "toast 创建成功；若 API 500 则如实 FAIL 并关联 BUG-003"
+    },
+    {
+      "id": "TC11", "priority": "P1",
+      "desc": "定时任务：Cron 为空提交（已知前端校验缺失回归）",
+      "precondition": "已登录",
+      "semantic": "normal",
+      "defect": "BUG-004",
+      "steps": [
+        {"action": "goto", "url": "/projects/{pid}/schedules"},
+        {"action": "click", "selector": "button:has-text('新建定时任务')"},
+        {"action": "fill", "selector": "input[placeholder='任务名称']", "value": "sched_bad_<ts>"},
+        {"action": "select_first", "selector": "select"},
+        {"action": "click", "selector": "button:has-text('确认创建')"},
+        {"action": "expect", "kind": "form_error", "text": "请输入 Cron"}
+      ],
+      "expect": "应出现「请输入 Cron」前端校验提示；无提示直接提交 = BUG-004 复现（FAIL）"
+    },
+    {
+      "id": "TC12", "priority": "P1",
+      "desc": "API Token：创建 Token 成功",
+      "precondition": "已登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/projects/{pid}/settings/tokens"},
+        {"action": "click", "selector": "button:has-text('创建 Token')"},
+        {"action": "fill", "selector": "input[placeholder='例如: github-ci-token']", "value": "token_<ts>"},
+        {"action": "click", "selector": "button:has-text('创建')"},
+        {"action": "expect", "kind": "visible", "selector": "text=token_<ts>"}
+      ],
+      "expect": "Token 表格出现 token_<ts>"
+    },
+    {
+      "id": "TC13", "priority": "P2",
+      "desc": "API 测试：「新建」按钮无响应确认",
+      "precondition": "已登录",
+      "semantic": "normal",
+      "defect": "OBS-004",
+      "steps": [
+        {"action": "goto", "url": "/projects/{pid}/api"},
+        {"action": "click", "selector": "button:has-text('新建')"},
+        {"action": "wait", "ms": 1500},
+        {"action": "expect", "kind": "visible", "selector": ".el-dialog"}
+      ],
+      "expect": "点击「新建」应弹出对话框；无弹窗 = OBS-004 复现（FAIL）"
+    },
+    {
+      "id": "TC14", "priority": "P2",
+      "desc": "CI/CD：两表格表头混排确认",
+      "precondition": "已登录",
+      "semantic": "defect",
+      "defect": "OBS-005",
+      "steps": [
+        {"action": "goto", "url": "/projects/{pid}/settings/ci"},
+        {"action": "expect", "kind": "visible", "selector": "text=Token 前缀"},
+        {"action": "expect", "kind": "visible", "selector": "text=触发方式"}
+      ],
+      "expect": "缺陷判定：API Token 表头与 CI 触发表头同时可见（混排）= OBS-005 复现（FAIL）；各自独立 = 已修复（PASS）"
+    }
+  ]
+}
