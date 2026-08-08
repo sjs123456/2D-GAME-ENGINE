@@ -1,0 +1,9 @@
+# 会话元数据（非测试资产）
+.reasonix/desktop-topic-*.json
+# Python
+__pycache__/
+*.pyc
+# 报告归档（可重新生成；CI 以 artifact 上传）
+reports/
+# Node
+node_modules/

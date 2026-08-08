@@ -1,0 +1,94 @@
+{
+  "url": "http://123.56.21.178:8080/login",
+  "title": "自动化测试平台",
+  "inputs": [
+    {
+      "name": "",
+      "id": "",
+      "type": "text",
+      "placeholder": "3-50个字符，字母数字下划线",
+      "required": false,
+      "maxlength": -1,
+      "autocomplete": "",
+      "visible": true
+    },
+    {
+      "name": "",
+      "id": "",
+      "type": "email",
+      "placeholder": "请输入邮箱地址",
+      "required": false,
+      "maxlength": -1,
+      "autocomplete": "",
+      "visible": true
+    },
+    {
+      "name": "",
+      "id": "",
+      "type": "password",
+      "placeholder": "8-128个字符，须含大小写字母和数字",
+      "required": false,
+      "maxlength": -1,
+      "autocomplete": "",
+      "visible": true
+    },
+    {
+      "name": "",
+      "id": "",
+      "type": "password",
+      "placeholder": "请再次输入密码",
+      "required": false,
+      "maxlength": -1,
+      "autocomplete": "",
+      "visible": true
+    }
+  ],
+  "selects": [],
+  "buttons": [
+    {
+      "type": "submit",
+      "text": "登录",
+      "visible": true
+    },
+    {
+      "type": "submit",
+      "text": "注册",
+      "visible": true
+    },
+    {
+      "type": "submit",
+      "text": "注 册",
+      "visible": true
+    }
+  ],
+  "checkboxes": [],
+  "required_labels": [
+    {
+      "text": "用户名",
+      "cls": "input-label"
+    },
+    {
+      "text": "邮箱",
+      "cls": "input-label"
+    },
+    {
+      "text": "密码",
+      "cls": "input-label"
+    },
+    {
+      "text": "确认密码",
+      "cls": "input-label"
+    }
+  ],
+  "form_attrs": [
+    {
+      "action": "http://123.56.21.178:8080/login",
+      "method": "get",
+      "cls": "login-form"
+    },
+    {
+      "el_form_attrs": "{\"data-v-51e41adf\":\"\",\"class\":\"login-form\"}"
+    }
+  ],
+  "captcha": null
+}

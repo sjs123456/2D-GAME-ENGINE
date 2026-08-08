@@ -1,0 +1,140 @@
+[
+  {
+    "id": "TC01",
+    "desc": "登录成功：admin123 / Admin123",
+    "expect": "跳转到 /dashboard，出现“登录成功”提示",
+    "result": "跳转 http://123.56.21.178:8080/dashboard；提示：登录成功 || 登 录 || 退出登录 || 🤖\n测试平台\n仪表盘\n项目管理\n设备管理\n首页\n/\n仪表盘\nadmin123\n仪表盘\n—\n项目总数\n—\n用例总数\n—\n今日执行\n—\n通过率\n近期执行趋势\n暂无数据\n用例类型分布\n暂无数据\n最近执行记录\n暂无执行记录 || 1 || 0% || [.el-message] 登录成功",
+    "url": "http://123.56.21.178:8080/dashboard",
+    "title": "自动化测试平台",
+    "hints": [
+      "登录成功",
+      "登 录",
+      "退出登录",
+      "🤖\n测试平台\n仪表盘\n项目管理\n设备管理\n首页\n/\n仪表盘\nadmin123\n仪表盘\n—\n项目总数\n—\n用例总数\n—\n今日执行\n—\n通过率\n近期执行趋势\n暂无数据\n用例类型分布\n暂无数据\n最近执行记录\n暂无执行记录",
+      "1",
+      "0%",
+      "[.el-message] 登录成功"
+    ],
+    "api_responses": [
+      [
+        200,
+        "http://123.56.21.178:8080/api/v1/auth/login"
+      ],
+      [
+        200,
+        "http://123.56.21.178:8080/api/v1/projects"
+      ],
+      [
+        200,
+        "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/executions?page=1&page_size=10"
+      ],
+      [
+        200,
+        "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/statistics/executions"
+      ],
+      [
+        200,
+        "http://123.56.21.178:8080/api/v1/projects/ab2fb177-e302-43bf-a146-6c1b6b9a771c/statistics/overview"
+      ]
+    ],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\login-TC01.png",
+    "step": "输入账号 'admin123' + 密码 'Admin123'，点击登录",
+    "dialogs": [],
+    "body_excerpt": "🤖\n测试平台\n仪表盘\n项目管理\n设备管理\n首页\n/\n仪表盘\nadmin123\n仪表盘\n1\n项目总数\n—\n用例总数\n—\n今日执行\n0%\n通过率\n近期执行趋势\n暂无数据\n用例类型分布\n暂无数据\n最近执行记录\n暂无执行记录\n\n登录成功"
+  },
+  {
+    "id": "TC02",
+    "desc": "密码错误：admin123 / Admin1234",
+    "expect": "不跳转（仍 /login），出现错误提示",
+    "result": "未跳转但前端无任何错误提示；API 登录接口 401",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [],
+    "api_responses": [
+      [
+        401,
+        "http://123.56.21.178:8080/api/v1/auth/login"
+      ]
+    ],
+    "verdict": "FAIL",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\login-TC02.png",
+    "step": "输入账号 'admin123' + 密码 'Admin1234'，点击登录",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n密码\n记住我\n登 录"
+  },
+  {
+    "id": "TC03",
+    "desc": "账号不存在：nosuchuser888 / Admin123",
+    "expect": "不跳转（仍 /login），出现错误提示（与TC02是否相同如实记录）",
+    "result": "未跳转但前端无任何错误提示；API 登录接口 401",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [],
+    "api_responses": [
+      [
+        401,
+        "http://123.56.21.178:8080/api/v1/auth/login"
+      ]
+    ],
+    "verdict": "FAIL",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\login-TC03.png",
+    "step": "输入账号 'nosuchuser888' + 密码 'Admin123'，点击登录",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n密码\n记住我\n登 录"
+  },
+  {
+    "id": "TC04",
+    "desc": "账号为空：密码 Admin123",
+    "expect": "不跳转，出现“请输入用户名”类提示",
+    "result": "未跳转；提示：请输入用户名 || [.el-message] 请输入用户名",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "请输入用户名",
+      "[.el-message] 请输入用户名"
+    ],
+    "api_responses": [],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\login-TC04.png",
+    "step": "输入账号 '' + 密码 'Admin123'，点击登录",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n密码\n记住我\n登 录\n\n请输入用户名"
+  },
+  {
+    "id": "TC05",
+    "desc": "密码为空：账号 admin123",
+    "expect": "不跳转，出现“请输入密码”类提示",
+    "result": "未跳转；提示：请输入密码 || [.el-message] 请输入密码",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "请输入密码",
+      "[.el-message] 请输入密码"
+    ],
+    "api_responses": [],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\login-TC05.png",
+    "step": "输入账号 'admin123' + 密码 ''，点击登录",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n密码\n记住我\n登 录\n\n请输入密码"
+  },
+  {
+    "id": "TC06",
+    "desc": "均为空：直接点登录",
+    "expect": "不跳转，出现提示（记录实际提示）",
+    "result": "未跳转；提示：请输入用户名 || [.el-message] 请输入用户名",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "请输入用户名",
+      "[.el-message] 请输入用户名"
+    ],
+    "api_responses": [],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\login-TC06.png",
+    "step": "输入账号 '' + 密码 ''，点击登录",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n密码\n记住我\n登 录\n\n请输入用户名"
+  }
+]

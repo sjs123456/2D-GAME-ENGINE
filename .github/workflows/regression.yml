@@ -1,0 +1,47 @@
+name: regression
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 安装依赖
+        run: |
+          pip install playwright mcp
+          python -m playwright install --with-deps chromium
+
+      - name: 登录回归（复用版本化脚本，无副作用）
+        env:
+          TEST_WS: ${{ github.workspace }}
+        run: python .reasonix/tmp/test-login-cases-v3.py
+
+      - name: 注册回归（复用版本化脚本）
+        env:
+          TEST_WS: ${{ github.workspace }}
+        run: python .reasonix/tmp/test-register-cases-v4.py
+
+      - name: 生成报告（版本与数据对齐）
+        env:
+          TEST_WS: ${{ github.workspace }}
+        run: |
+          python .reasonix/tmp/gen-report.py login 3
+          python .reasonix/tmp/gen-report.py register 4
+
+      - name: 上传报告制品
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-reports
+          path: |
+            自动化测试平台-*.html
+            .reasonix/tmp/*-test-results-*.json
+          retention-days: 30

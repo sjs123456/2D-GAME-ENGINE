@@ -1,0 +1,284 @@
+[
+  {
+    "id": "TC01",
+    "desc": "正常注册成功（唯一账号）",
+    "expect": "注册接口返回成功(2xx)，出现“注册成功”提示；记录跳转/自动登录行为",
+    "result": "注册接口 [(201, 'http://123.56.21.178:8080/api/v1/auth/register')]；提示：注册成功，请登录 || 用户名\n密码\n记住我\n登 录 || [.el-message] 注册成功，请登录；最终URL=http://123.56.21.178:8080/login",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "注册成功，请登录",
+      "用户名\n密码\n记住我\n登 录",
+      "[.el-message] 注册成功，请登录"
+    ],
+    "api_responses": [
+      [
+        201,
+        "http://123.56.21.178:8080/api/v1/auth/register"
+      ]
+    ],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\register-TC01-v3.png",
+    "step": "注册tab填写 用户名='testuser_v3_202608062115081500' 邮箱='testuser_v3_202608062115081500@test.com' 密码='Test123456' 确认='Test123456'，点注册",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n密码\n记住我\n登 录\n\n注册成功，请登录",
+    "script": "test-register-cases-v3.py",
+    "run_at": "2026-08-06 21:16:39"
+  },
+  {
+    "id": "TC02",
+    "desc": "密码与确认密码不一致",
+    "expect": "前端提示“两次输入的密码不一致”，不产生注册请求",
+    "result": "前端拦截：提示=两次输入的密码不一致 || [.el-message] 两次输入的密码不一致；无注册请求",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "两次输入的密码不一致",
+      "[.el-message] 两次输入的密码不一致"
+    ],
+    "api_responses": [],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\register-TC02-v3.png",
+    "step": "注册tab填写 用户名='tc02_202608062115081500' 邮箱='tc02_202608062115081500@test.com' 密码='Test123456' 确认='Test654321'，点注册",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n邮箱\n密码\n确认密码\n注 册\n\n两次输入的密码不一致",
+    "script": "test-register-cases-v3.py",
+    "run_at": "2026-08-06 21:16:39"
+  },
+  {
+    "id": "TC03",
+    "desc": "密码过短（3位）",
+    "expect": "注册被拒绝并提示密码长度/规则要求（8-128个字符，须含大小写字母和数字）",
+    "result": "注册被拒并提示：password: String should have at least 8 characters || 注 册 || [.el-message] password: String should have at least 8 characters；API=[(422, 'http://123.56.21.178:8080/api/v1/auth/register')]",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "password: String should have at least 8 characters",
+      "注 册",
+      "[.el-message] password: String should have at least 8 characters"
+    ],
+    "api_responses": [
+      [
+        422,
+        "http://123.56.21.178:8080/api/v1/auth/register"
+      ]
+    ],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\register-TC03-v3.png",
+    "step": "注册tab填写 用户名='tc03_202608062115081500' 邮箱='tc03_202608062115081500@test.com' 密码='Ab1' 确认='Ab1'，点注册",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n邮箱\n密码\n确认密码\n注 册\n\npassword: String should have at least 8 characters",
+    "script": "test-register-cases-v3.py",
+    "run_at": "2026-08-06 21:16:39"
+  },
+  {
+    "id": "TC04",
+    "desc": "弱密码：8位但无大写字母",
+    "expect": "注册被拒绝并提示密码须含大小写字母和数字",
+    "result": "注册被拒并提示：password: Value error, 密码必须包含大写字母 || 注 册 || [.el-message] password: Value error, 密码必须包含大写字母；API=[(422, 'http://123.56.21.178:8080/api/v1/auth/register')]",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "password: Value error, 密码必须包含大写字母",
+      "注 册",
+      "[.el-message] password: Value error, 密码必须包含大写字母"
+    ],
+    "api_responses": [
+      [
+        422,
+        "http://123.56.21.178:8080/api/v1/auth/register"
+      ]
+    ],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\register-TC04-v3.png",
+    "step": "注册tab填写 用户名='tc04_202608062115081500' 邮箱='tc04_202608062115081500@test.com' 密码='test1234' 确认='test1234'，点注册",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n邮箱\n密码\n确认密码\n注 册\n\npassword: Value error, 密码必须包含大写字母",
+    "script": "test-register-cases-v3.py",
+    "run_at": "2026-08-06 21:16:39"
+  },
+  {
+    "id": "TC05",
+    "desc": "用户名已存在（admin123 试探）",
+    "expect": "后端拒绝：提示“用户名已被占用”或注册接口 4xx",
+    "result": "后端拒绝：提示=用户名已被占用 || 注 册 || [.el-message] 用户名已被占用；API=[(400, 'http://123.56.21.178:8080/api/v1/auth/register')]",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "用户名已被占用",
+      "注 册",
+      "[.el-message] 用户名已被占用"
+    ],
+    "api_responses": [
+      [
+        400,
+        "http://123.56.21.178:8080/api/v1/auth/register"
+      ]
+    ],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\register-TC05-v3.png",
+    "step": "注册tab填写 用户名='admin123' 邮箱='tc05_202608062115081500@test.com' 密码='Test123456' 确认='Test123456'，点注册",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n邮箱\n密码\n确认密码\n注 册\n\n用户名已被占用",
+    "script": "test-register-cases-v3.py",
+    "run_at": "2026-08-06 21:16:39"
+  },
+  {
+    "id": "TC06",
+    "desc": "用户名格式非法（2个字符，长度不足）",
+    "expect": "注册被拒绝并提示用户名须 3-50 个字符字母数字下划线",
+    "result": "注册被拒并提示：username: String should have at least 3 characters || 注 册 || [.el-message] username: String should have at least 3 characters；API=[(422, 'http://123.56.21.178:8080/api/v1/auth/register')]",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "username: String should have at least 3 characters",
+      "注 册",
+      "[.el-message] username: String should have at least 3 characters"
+    ],
+    "api_responses": [
+      [
+        422,
+        "http://123.56.21.178:8080/api/v1/auth/register"
+      ]
+    ],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\register-TC06-v3.png",
+    "step": "注册tab填写 用户名='ab' 邮箱='tc06_202608062115081500@test.com' 密码='Test123456' 确认='Test123456'，点注册",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n邮箱\n密码\n确认密码\n注 册\n\nusername: String should have at least 3 characters",
+    "script": "test-register-cases-v3.py",
+    "run_at": "2026-08-06 21:16:39"
+  },
+  {
+    "id": "TC07",
+    "desc": "邮箱格式非法",
+    "expect": "无效邮箱被拦截不提交（HTML5 原生校验或前端提示），无注册请求",
+    "result": "提交被 HTML5 原生邮箱校验拦截（无API请求）；validationMessage=Please include an '@' in the email address. 'not-an-email' is missing an '@'.；页面无 JS 提示",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "[html5-validation] Please include an '@' in the email address. 'not-an-email' is missing an '@'."
+    ],
+    "api_responses": [],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\register-TC07-v3.png",
+    "step": "注册tab填写 用户名='tc07_202608062115081500' 邮箱='not-an-email' 密码='Test123456' 确认='Test123456'，点注册",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n邮箱\n密码\n确认密码\n注 册",
+    "script": "test-register-cases-v3.py",
+    "run_at": "2026-08-06 21:16:39"
+  },
+  {
+    "id": "TC08",
+    "desc": "必填项-用户名为空",
+    "expect": "提示“请输入用户名”，不产生注册请求",
+    "result": "前端拦截：提示=请输入用户名 || [.el-message] 请输入用户名；无注册请求",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "请输入用户名",
+      "[.el-message] 请输入用户名"
+    ],
+    "api_responses": [],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\register-TC08-v3.png",
+    "step": "注册tab填写 用户名=None 邮箱='tc08_202608062115081500@test.com' 密码='Test123456' 确认='Test123456'，点注册",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n邮箱\n密码\n确认密码\n注 册\n\n请输入用户名",
+    "script": "test-register-cases-v3.py",
+    "run_at": "2026-08-06 21:16:39"
+  },
+  {
+    "id": "TC09",
+    "desc": "必填项-邮箱为空",
+    "expect": "提示“请输入邮箱”，不产生注册请求",
+    "result": "前端拦截：提示=请输入邮箱 || [.el-message] 请输入邮箱；无注册请求",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "请输入邮箱",
+      "[.el-message] 请输入邮箱"
+    ],
+    "api_responses": [],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\register-TC09-v3.png",
+    "step": "注册tab填写 用户名='tc09_202608062115081500' 邮箱=None 密码='Test123456' 确认='Test123456'，点注册",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n邮箱\n密码\n确认密码\n注 册\n\n请输入邮箱",
+    "script": "test-register-cases-v3.py",
+    "run_at": "2026-08-06 21:16:39"
+  },
+  {
+    "id": "TC10",
+    "desc": "必填项-密码为空",
+    "expect": "提示“请输入密码”，不产生注册请求",
+    "result": "前端拦截：提示=请输入密码 || [.el-message] 请输入密码；无注册请求",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "请输入密码",
+      "[.el-message] 请输入密码"
+    ],
+    "api_responses": [],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\register-TC10-v3.png",
+    "step": "注册tab填写 用户名='tc10_202608062115081500' 邮箱='tc10_202608062115081500@test.com' 密码=None 确认='Test123456'，点注册",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n邮箱\n密码\n确认密码\n注 册\n\n请输入密码",
+    "script": "test-register-cases-v3.py",
+    "run_at": "2026-08-06 21:16:39"
+  },
+  {
+    "id": "TC11",
+    "desc": "必填项-确认密码为空",
+    "expect": "提示“请再次输入密码/两次输入不一致”，不产生注册请求",
+    "result": "前端拦截：提示=两次输入的密码不一致 || [.el-message] 两次输入的密码不一致；无注册请求",
+    "url": "http://123.56.21.178:8080/login",
+    "title": "自动化测试平台",
+    "hints": [
+      "两次输入的密码不一致",
+      "[.el-message] 两次输入的密码不一致"
+    ],
+    "api_responses": [],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\register-TC11-v3.png",
+    "step": "注册tab填写 用户名='tc11_202608062115081500' 邮箱='tc11_202608062115081500@test.com' 密码='Test123456' 确认=None，点注册",
+    "dialogs": [],
+    "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n邮箱\n密码\n确认密码\n注 册\n\n两次输入的密码不一致",
+    "script": "test-register-cases-v3.py",
+    "run_at": "2026-08-06 21:16:39"
+  },
+  {
+    "id": "TC12",
+    "desc": "注册成功账号登录验证（闭环）",
+    "expect": "用 TC01 注册的账号登录成功，跳转 /dashboard",
+    "result": "注册账号登录成功，跳转 http://123.56.21.178:8080/dashboard；提示=登录成功 || 登 录 || 退出登录 || 🤖\n测试平台\n仪表盘\n项目管理\n设备管理\n首页\n/\n仪表盘\ntestuser_v3_202608062115081500\n仪表盘\n—\n项目总数\n—\n用例总数\n—\n今日执行\n—\n通过率\n近期执行趋势\n暂无数据\n用例类型分布\n暂无数据\n最近执行记录\n暂无执行记录 || 0 || [.el-message] 登录成功",
+    "url": "http://123.56.21.178:8080/dashboard",
+    "title": "自动化测试平台",
+    "hints": [
+      "登录成功",
+      "登 录",
+      "退出登录",
+      "🤖\n测试平台\n仪表盘\n项目管理\n设备管理\n首页\n/\n仪表盘\ntestuser_v3_202608062115081500\n仪表盘\n—\n项目总数\n—\n用例总数\n—\n今日执行\n—\n通过率\n近期执行趋势\n暂无数据\n用例类型分布\n暂无数据\n最近执行记录\n暂无执行记录",
+      "0",
+      "[.el-message] 登录成功"
+    ],
+    "api_responses": [
+      [
+        200,
+        "http://123.56.21.178:8080/api/v1/auth/login"
+      ],
+      [
+        200,
+        "http://123.56.21.178:8080/api/v1/projects"
+      ]
+    ],
+    "verdict": "PASS",
+    "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\register-TC12-v3.png",
+    "step": "用注册账号 testuser_v3_202608062115081500 / Test123456 在登录页登录，验证跳转 /dashboard",
+    "dialogs": [],
+    "body_excerpt": "🤖\n测试平台\n仪表盘\n项目管理\n设备管理\n首页\n/\n仪表盘\ntestuser_v3_202608062115081500\n仪表盘\n0\n项目总数\n—\n用例总数\n—\n今日执行\n—\n通过率\n近期执行趋势\n暂无数据\n用例类型分布\n暂无数据\n最近执行记录\n暂无执行记录\n\n登录成功",
+    "script": "test-register-cases-v3.py",
+    "run_at": "2026-08-06 21:16:39"
+  }
+]

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>竞拍之王 Auction King</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 顶部 HUD -->
+<div id="hud">
+  <div class="hud-left">
+    <span class="chip gold">🪙 <b id="hudGold">0</b></span>
+    <span class="chip" id="hudLevelChip">第 1 关</span>
+  </div>
+  <div class="hud-center">
+    <span class="chip" id="hudProgress">第 1 / 5 件</span>
+  </div>
+  <div class="hud-right">
+    <span class="chip" id="hudScore">得分 <b id="hudScoreVal">0</b></span>
+    <button id="btnMute" class="icon-btn" title="音效开关 (M)">🔊</button>
+  </div>
+</div>
+
+<!-- 舞台 -->
+<div id="stage">
+  <div class="curtain cl"></div>
+  <div class="curtain cr"></div>
+  <div class="spotlight"></div>
+
+  <div id="itemCard">
+    <div id="itemEmoji">🏺</div>
+    <div id="itemName">—</div>
+    <div id="itemDesc">—</div>
+    <div id="itemBase">起拍价 ¥0</div>
+  </div>
+
+  <div id="priceBoard">
+    <div class="pb-label">当前出价</div>
+    <div id="priceValue">¥ 0</div>
+    <div id="sweetHint">期望成交 ¥0 – ¥0</div>
+    <div id="fallWrap"><div id="fallBar"></div></div>
+    <div id="fallText"></div>
+  </div>
+
+  <div id="hammerWrap">
+    <button id="hammerBtn" disabled>
+      <span id="hammerIcon">🔨</span>
+      <span id="hammerLabel">落锤</span>
+    </button>
+    <div class="hint">空格 = 落锤</div>
+  </div>
+</div>
+
+<!-- 观众席 -->
+<div id="audience">
+  <div class="aud-title">— 现场买家 —</div>
+  <div id="bidderRow"></div>
+</div>
+
+<!-- 提示气泡 -->
+<div id="toast"></div>
+
+<!-- 浮层（菜单 / 结算 / 通关） -->
+<div id="overlay" class="hidden">
+  <div class="panel" id="panel"></div>
+</div>
+
+<script src="js/audio.js"></script>
+<script src="js/items.js"></script>
+<script src="js/bidders.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

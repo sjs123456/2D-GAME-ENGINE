@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>竞拍之王 BidKing — 仓储盲盒拍卖</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 顶部 HUD -->
+<div id="hud">
+  <div class="hud-left">
+    <span class="chip">🏚️ <b id="hudScene">—</b></span>
+    <span class="chip" id="hudRound">回合 —/5</span>
+  </div>
+  <div class="hud-right">
+    <button id="btnSkill" class="skill-btn" disabled>🔍 技能</button>
+    <span class="chip">🎫 门票 <b id="hudTicket">—</b></span>
+    <span class="chip cash">💵 <b id="hudCash">¥0</b></span>
+    <button id="btnMute" class="icon-btn" title="音效开关 (M)">🔊</button>
+  </div>
+</div>
+
+<!-- 拍卖仓 -->
+<div id="stage">
+  <div class="curtain cl"></div>
+  <div class="curtain cr"></div>
+  <div class="spotlight"></div>
+
+  <div id="lotCard">
+    <div id="lotTitle">—</div>
+    <div id="lotInfo">—</div>
+    <div id="lotGrid"></div>
+    <div id="lotHint"></div>
+    <div id="lotSkill"></div>
+  </div>
+
+  <!-- 出价区 -->
+  <div id="bidPanel">
+    <div id="bidRoundLine">竞价轮 <b id="bidRoundNo">1</b>/3 · 当前最高 <b id="curMax">¥0</b></div>
+    <div id="ratioLine">碾压线 ×1.40</div>
+    <div id="sealedUI" class="hidden">
+      <div id="ratioBtns"></div>
+      <div class="btn-row">
+        <button id="btnBid" class="btn small primary">✉️ 确认出价</button>
+        <button id="btnPass" class="btn small ghost">放弃</button>
+      </div>
+      <div id="bidHint">—</div>
+    </div>
+    <div id="waitMsg" class="hidden">🤫 等待其他买家出价…</div>
+    <button id="btnStart" class="btn primary hidden">▶ 开始竞价</button>
+    <div id="revealRow"></div>
+  </div>
+</div>
+
+<!-- 竞拍者席位 -->
+<div id="playersRow"></div>
+
+<div id="toast"></div>
+
+<!-- 浮层 -->
+<div id="overlay" class="hidden">
+  <div class="panel" id="panel"></div>
+</div>
+
+<script src="js/audio.js"></script>
+<script src="js/data.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

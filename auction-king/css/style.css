@@ -1,0 +1,471 @@
+/* ============================================================
+   竞拍之王 Auction King — 拍卖行主题（全部素材程序化生成）
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  background:
+    radial-gradient(ellipse 130% 75% at 50% -12%, #5a1f33 0%, #2c0e1b 45%, #15050e 100%);
+  color: #f3e6c8;
+  overflow: hidden;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- HUD ---------- */
+#hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 18px;
+  background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.12));
+  border-bottom: 1px solid rgba(212,175,55,.35);
+  z-index: 5;
+}
+.hud-left, .hud-right { display: flex; gap: 8px; align-items: center; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0,0,0,.45);
+  border: 1px solid rgba(212,175,55,.4);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 14px;
+  color: #f0dda0;
+}
+.chip.gold b { color: #ffd54a; font-size: 16px; }
+#hudScore b { color: #9be8a0; }
+.icon-btn {
+  background: rgba(0,0,0,.45);
+  border: 1px solid rgba(212,175,55,.4);
+  color: #f0dda0;
+  border-radius: 999px;
+  width: 38px; height: 34px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background .15s;
+}
+.icon-btn:hover { background: rgba(212,175,55,.25); }
+
+/* ---------- 舞台 ---------- */
+#stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 300px;
+  overflow: hidden;
+}
+#stage.shake { animation: shake .4s linear; }
+@keyframes shake {
+  0%, 100% { transform: translate(0,0); }
+  20% { transform: translate(-8px,4px); }
+  40% { transform: translate(7px,-5px); }
+  60% { transform: translate(-5px,3px); }
+  80% { transform: translate(4px,-2px); }
+}
+
+/* 幕布 */
+.curtain {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: clamp(64px, 15%, 180px);
+  z-index: 3;
+  background:
+    repeating-linear-gradient(90deg,
+      #8c1a30 0px, #a02038 16px, #761226 32px, #a02038 48px);
+  box-shadow: inset -14px 0 26px rgba(0,0,0,.55);
+}
+.curtain.cl { left: 0; }
+.curtain.cr { right: 0; transform: scaleX(-1); }
+.curtain::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 10px;
+  background: linear-gradient(180deg, #e2bc4a, #8a6d1f);
+}
+
+/* 聚光灯 */
+.spotlight {
+  position: absolute;
+  left: 50%; top: -140px;
+  width: 540px; height: 540px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(255,240,180,.26) 0%, rgba(255,240,180,.06) 42%, transparent 70%);
+  animation: sway 7s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes sway { from { margin-left: -80px; } to { margin-left: 80px; } }
+
+/* 物品展示卡 */
+#itemCard {
+  position: absolute;
+  left: 50%; top: 46%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  width: min(320px, 44vw);
+  opacity: 0;
+  transition: opacity .6s;
+  z-index: 2;
+}
+#itemCard.show { opacity: 1; }
+#itemEmoji {
+  display: inline-block;
+  font-size: clamp(64px, 11vh, 108px);
+  line-height: 1.15;
+  filter: drop-shadow(0 0 26px rgba(255,214,74,.65));
+  animation: float 3.2s ease-in-out infinite;
+}
+#itemEmoji img {
+  width: clamp(90px, 16vh, 150px);
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 0 30px rgba(255,214,74,.5);
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+#itemName {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ffe9b0;
+  text-shadow: 0 2px 8px rgba(0,0,0,.85);
+  margin-top: 2px;
+}
+#itemDesc { font-size: 13px; color: #d8b98a; margin-top: 4px; }
+#itemBase {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #c9a86a;
+  background: rgba(0,0,0,.5);
+  border: 1px solid rgba(212,175,55,.4);
+  border-radius: 8px;
+  padding: 4px 14px;
+  display: inline-block;
+}
+
+/* 价格牌 */
+#priceBoard {
+  position: absolute;
+  left: 50%; bottom: 12%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 2;
+  background: linear-gradient(180deg, #3a2410, #221303);
+  border: 3px solid #d4af37;
+  border-radius: 14px;
+  padding: 10px 36px 12px;
+  min-width: min(340px, 64vw);
+  box-shadow: 0 6px 24px rgba(0,0,0,.6), inset 0 0 26px rgba(212,175,55,.15);
+}
+.pb-label { font-size: 12px; letter-spacing: 8px; color: #b99a5e; }
+#priceValue {
+  font-size: clamp(34px, 6vw, 52px);
+  font-weight: 800;
+  color: #ffd54a;
+  text-shadow: 0 0 16px rgba(255,213,74,.5);
+  font-variant-numeric: tabular-nums;
+  transition: color .25s;
+}
+#priceValue.pop { animation: pricePop .22s ease; }
+@keyframes pricePop { 0% { transform: scale(1.18); } 100% { transform: scale(1); } }
+#priceValue.sweet {
+  color: #7dffa8;
+  text-shadow: 0 0 22px rgba(125,255,168,.85);
+  animation: glowPulse 1.2s ease-in-out infinite;
+}
+#priceValue.warn {
+  color: #ff5f5f;
+  text-shadow: 0 0 22px rgba(255,95,95,.85);
+  animation: glowPulse .7s ease-in-out infinite;
+}
+@keyframes glowPulse { 0%, 100% { opacity: 1; } 50% { opacity: .72; } }
+#sweetHint { font-size: 12px; color: #c9a86a; margin-top: 2px; }
+#fallWrap {
+  height: 6px;
+  margin-top: 8px;
+  border-radius: 3px;
+  background: rgba(255,255,255,.12);
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity .3s;
+}
+#fallWrap.on { opacity: 1; }
+#fallBar {
+  height: 100%; width: 100%;
+  background: linear-gradient(90deg, #ff5f5f, #ffb04a);
+  border-radius: 3px;
+}
+#fallText {
+  font-size: 12px;
+  color: #ff9a9a;
+  margin-top: 6px;
+  min-height: 16px;
+}
+
+/* 落锤按钮 */
+#hammerWrap {
+  position: absolute;
+  right: clamp(14px, 5vw, 60px);
+  bottom: 10%;
+  text-align: center;
+  z-index: 4;
+}
+#hammerBtn {
+  width: 112px; height: 112px;
+  border-radius: 50%;
+  border: 3px solid #d4af37;
+  background: radial-gradient(circle at 35% 30%, #4a2c12, #241405);
+  cursor: pointer;
+  color: #ffd54a;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.55), inset 0 0 18px rgba(212,175,55,.2);
+  transition: transform .12s, box-shadow .12s;
+}
+#hammerBtn:hover:not(:disabled) {
+  transform: scale(1.06);
+  box-shadow: 0 10px 30px rgba(212,175,55,.35);
+}
+#hammerBtn:disabled { opacity: .55; cursor: default; }
+#hammerIcon { font-size: 42px; line-height: 1; }
+#hammerBtn.hit { animation: hammerHit .42s ease-in; }
+@keyframes hammerHit {
+  0%   { transform: rotate(0) scale(1); }
+  25%  { transform: rotate(-26deg) scale(.95) translateY(9px); }
+  55%  { transform: rotate(12deg) scale(1.07); }
+  100% { transform: rotate(0) scale(1); }
+}
+.hint { font-size: 11px; color: #a98a52; margin-top: 6px; letter-spacing: 1px; }
+
+/* ---------- 观众席 ---------- */
+#audience {
+  padding: 10px 20px 16px;
+  background: linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.62));
+  border-top: 1px solid rgba(212,175,55,.3);
+  z-index: 5;
+}
+.aud-title {
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 10px;
+  color: #a98a52;
+  margin-bottom: 8px;
+}
+#bidderRow {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.bidder {
+  position: relative;
+  width: 118px;
+  padding: 10px 8px 8px;
+  border-radius: 14px 14px 10px 10px;
+  background: linear-gradient(180deg, #33203a, #1c1222);
+  border: 2px solid #54406b;
+  text-align: center;
+  transition: transform .18s, border-color .18s, box-shadow .18s, opacity .3s, background .18s;
+}
+.bidder .avatar { font-size: 36px; line-height: 1.25; }
+.bidder .bname { font-size: 14px; font-weight: 700; color: #f0e3c0; margin-top: 2px; }
+.bidder .bstyle { font-size: 11px; color: #b99a6a; }
+.bidder .bcount { font-size: 10px; color: #8a7a5a; margin-top: 3px; }
+.bidder .bubble {
+  position: absolute;
+  top: -30px; left: 50%;
+  transform: translateX(-50%) scale(.4);
+  background: linear-gradient(180deg, #ffe27a, #f5b62e);
+  color: #3a2400;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  opacity: 0;
+  white-space: nowrap;
+  box-shadow: 0 3px 10px rgba(0,0,0,.5);
+  pointer-events: none;
+  transition: all .18s;
+}
+.bidder .bubble.show { opacity: 1; transform: translateX(-50%) scale(1); }
+.bidder.active-bid {
+  border-color: #ffd54a;
+  transform: translateY(-10px);
+  box-shadow: 0 0 22px rgba(255,213,74,.5);
+  background: linear-gradient(180deg, #4a3a1e, #2a2010);
+}
+.bidder.out { opacity: .35; filter: grayscale(.9); }
+.bidder.empty { visibility: hidden; }
+
+/* ---------- 提示气泡 ---------- */
+#toast {
+  position: fixed;
+  top: 64px; left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: rgba(20,8,4,.9);
+  border: 1px solid rgba(212,175,55,.6);
+  color: #ffe9b0;
+  padding: 8px 22px;
+  border-radius: 999px;
+  font-size: 14px;
+  opacity: 0;
+  transition: all .3s;
+  z-index: 40;
+  pointer-events: none;
+  box-shadow: 0 6px 20px rgba(0,0,0,.5);
+}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---------- 浮层 / 面板 ---------- */
+#overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10,3,6,.72);
+  backdrop-filter: blur(3px);
+}
+#overlay.hidden { display: none; }
+.panel {
+  width: min(470px, 92vw);
+  max-height: 92vh;
+  overflow-y: auto;
+  background: linear-gradient(180deg, #3a1f2c, #241018);
+  border: 2px solid #d4af37;
+  border-radius: 18px;
+  padding: 26px 30px;
+  text-align: center;
+  box-shadow: 0 18px 60px rgba(0,0,0,.7), inset 0 0 40px rgba(212,175,55,.08);
+}
+.logo { font-size: 56px; animation: float 3s ease-in-out infinite; }
+h1 {
+  font-size: 34px;
+  letter-spacing: 6px;
+  color: #ffd54a;
+  text-shadow: 0 0 24px rgba(255,213,74,.6);
+  margin-top: 2px;
+}
+h2 { font-size: 26px; color: #ffe9b0; letter-spacing: 3px; }
+.sub { color: #c9a86a; font-size: 13px; margin-bottom: 14px; letter-spacing: 2px; }
+
+.howto {
+  text-align: left;
+  font-size: 13.5px;
+  line-height: 2.15;
+  color: #e8d5b0;
+  background: rgba(0,0,0,.3);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 14px 0;
+}
+.howto b { color: #ffd54a; }
+
+.level-list { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+.level-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(212,175,55,.35);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .15s;
+  text-align: left;
+}
+.level-card:hover:not(.locked) { border-color: #ffd54a; background: rgba(212,175,55,.12); }
+.level-card.locked { opacity: .5; cursor: default; }
+.lv-num { font-size: 12px; color: #b99a5e; width: 52px; flex-shrink: 0; }
+.lv-name { font-weight: 700; color: #f0e3c0; flex-shrink: 0; }
+.lv-desc { flex: 1; font-size: 11.5px; color: #a98a70; }
+.lv-stars { font-size: 13px; letter-spacing: 1px; }
+
+.hud-gold-line { font-size: 12px; color: #c9a86a; margin: 6px 0 12px; }
+.hud-gold-line b { color: #ffd54a; font-size: 15px; }
+
+.btn {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.btn.primary {
+  background: linear-gradient(180deg, #f5c84a, #c8931f);
+  color: #2a1800;
+  box-shadow: 0 6px 18px rgba(212,175,55,.35);
+}
+.btn.primary:hover { filter: brightness(1.12); transform: translateY(-1px); }
+.btn.ghost {
+  background: rgba(255,255,255,.08);
+  color: #e8d5b0;
+  border: 1px solid rgba(212,175,55,.4);
+}
+.btn.ghost:hover { background: rgba(255,255,255,.16); }
+
+.panel-head .big-emoji { font-size: 64px; margin-bottom: 2px; }
+.grade-badge {
+  display: inline-block;
+  margin: 10px 0 4px;
+  padding: 5px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.grade-badge.perfect { background: linear-gradient(180deg,#ffd54a,#e8a020); color: #3a2400; box-shadow: 0 0 18px rgba(255,213,74,.6); }
+.grade-badge.good   { background: linear-gradient(180deg,#9be8a0,#4a9e55); color: #0c2a10; }
+.grade-badge.poor   { background: linear-gradient(180deg,#f0b0a0,#b06050); color: #3a0c06; }
+.grade-badge.over   { background: linear-gradient(180deg,#ffc36b,#c07a1e); color: #3a2200; }
+.grade-badge.fall   { background: linear-gradient(180deg,#9aa0a8,#5a6068); color: #14181c; }
+.grade-badge.stars  { background: linear-gradient(180deg,#ffd54a,#e8a020); color: #3a2400; font-size: 16px; }
+
+.panel-rows { margin: 14px 0 6px; text-align: left; }
+.panel-rows .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 4px;
+  border-bottom: 1px dashed rgba(212,175,55,.25);
+  font-size: 14px;
+  color: #d8c39a;
+}
+.panel-rows .row b { color: #ffe9b0; }
+.panel-rows .row .score { color: #7dffa8; font-size: 17px; }
+.panel-rows .row .gain { color: #ffd54a; animation: popIn .5s ease; display: inline-block; }
+.panel-rows .row .loss { color: #ff7d7d; }
+@keyframes popIn { 0% { transform: scale(.4); opacity: 0; } 60% { transform: scale(1.25); } 100% { transform: scale(1); opacity: 1; } }
+.panel-msg { font-size: 13px; color: #c9a86a; margin: 10px 0 6px; }
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 760px) {
+  .bidder { width: 92px; padding: 8px 4px; }
+  .bidder .avatar { font-size: 28px; }
+  .bidder .bname { font-size: 12px; }
+  #bidderRow { gap: 8px; }
+  #hammerWrap { right: 10px; bottom: 6%; }
+  #hammerBtn { width: 86px; height: 86px; }
+  #hammerIcon { font-size: 34px; }
+  #priceBoard { bottom: 8%; padding: 8px 20px 10px; }
+  .chip { font-size: 12px; padding: 4px 10px; }
+}
