@@ -1,46 +1,55 @@
 {
   "login": {
     "scripts": [
+      "test-login-cases.py",
       "test-login-cases-v2.py",
-      "test-login-cases-v3.py",
-      "test-login-cases.py"
+      "test-login-cases-v3.py"
+    ],
+    "cases": [
+      "login-cases.json"
     ],
     "results": [
+      "login-test-results.json",
       "login-test-results-v2.json",
       "login-test-results-v3.json",
-      "login-test-results.json"
+      "login-test-results-v4.json"
     ],
-    "screenshots": 18,
+    "screenshots": 24,
     "reports": [
+      "自动化测试平台-登录页自动化测试报告.html",
       "自动化测试平台-登录页自动化测试报告-v2.html",
-      "自动化测试平台-登录页自动化测试报告-v3.html",
-      "自动化测试平台-登录页自动化测试报告.html"
-    ],
-    "latest_version": 3,
-    "next_version": 4
-  },
-  "register": {
-    "scripts": [
-      "test-register-cases-v2.py",
-      "test-register-cases-v3.py",
-      "test-register-cases-v4.py",
-      "test-register-cases.py"
-    ],
-    "results": [
-      "register-test-results-v2.json",
-      "register-test-results-v3.json",
-      "register-test-results-v4.json",
-      "register-test-results.json"
-    ],
-    "screenshots": 53,
-    "reports": [
-      "自动化测试平台-注册页自动化测试报告-v2.html",
-      "自动化测试平台-注册页自动化测试报告-v3.html",
-      "自动化测试平台-注册页自动化测试报告-v4.html",
-      "自动化测试平台-注册页自动化测试报告.html"
+      "自动化测试平台-登录页自动化测试报告-v3.html"
     ],
     "latest_version": 4,
     "next_version": 5
+  },
+  "register": {
+    "scripts": [
+      "test-register-cases.py",
+      "test-register-cases-v2.py",
+      "test-register-cases-v3.py",
+      "test-register-cases-v4.py"
+    ],
+    "cases": [
+      "register-cases.json"
+    ],
+    "results": [
+      "register-test-results.json",
+      "register-test-results-v2.json",
+      "register-test-results-v3.json",
+      "register-test-results-v4.json",
+      "register-test-results-v5.json"
+    ],
+    "screenshots": 66,
+    "reports": [
+      "自动化测试平台-注册页自动化测试报告.html",
+      "自动化测试平台-注册页自动化测试报告-v2.html",
+      "自动化测试平台-注册页自动化测试报告-v3.html",
+      "自动化测试平台-注册页自动化测试报告-v4.html",
+      "自动化测试平台-注册页自动化测试报告-v5.html"
+    ],
+    "latest_version": 5,
+    "next_version": 6
   },
   "explore": {
     "scripts": [
@@ -54,6 +63,9 @@
     "screenshots": 17,
     "reports": [],
     "latest_version": 2,
-    "next_version": 3
+    "next_version": 3,
+    "cases": [
+      "explore-cases.json"
+    ]
   }
 }

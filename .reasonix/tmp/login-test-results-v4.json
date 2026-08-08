@@ -1,0 +1,180 @@
+{
+  "ts": "20260808220947",
+  "run_at": "2026-08-08 22:09:55",
+  "script": "login-cases.json",
+  "results": [
+    {
+      "id": "TC01",
+      "desc": "登录成功（admin123 / Admin123）",
+      "step": "goto(/login) → fill(input[placeholder='请输入用户名']) → fill(input[placeholder='请输入密码']) → click(button.submit-btn) → expect() → expect()",
+      "expect": "toast「登录成功」，跳转 /dashboard",
+      "result": "所有断言通过",
+      "url": "http://123.56.21.178:8080/dashboard",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\login-TC01.png",
+      "api_responses": [
+        {
+          "status": 200,
+          "url": "http://123.56.21.178:8080/api/v1/auth/login",
+          "method": "POST"
+        },
+        {
+          "status": 200,
+          "url": "http://123.56.21.178:8080/api/v1/projects",
+          "method": "GET"
+        },
+        {
+          "status": 200,
+          "url": "http://123.56.21.178:8080/api/v1/projects/50badf4b-e9c1-4bbd-8feb-1841ad0729d5/executions?page=1&page_size=10",
+          "method": "GET"
+        },
+        {
+          "status": 200,
+          "url": "http://123.56.21.178:8080/api/v1/projects/50badf4b-e9c1-4bbd-8feb-1841ad0729d5/statistics/overview",
+          "method": "GET"
+        },
+        {
+          "status": 200,
+          "url": "http://123.56.21.178:8080/api/v1/projects/50badf4b-e9c1-4bbd-8feb-1841ad0729d5/statistics/executions",
+          "method": "GET"
+        }
+      ],
+      "hints": [
+        "登录成功"
+      ],
+      "dialogs": [],
+      "body_excerpt": "🤖\n测试平台\n仪表盘\n项目管理\n设备管理\n首页\n/\n仪表盘\nadmin123\n仪表盘\n7\n项目总数\n—\n用例总数\n—\n今日执行\n0%\n通过率\n近期执行趋势\n暂无数据\n用例类型分布\n暂无数据\n最近执行记录\n暂无执行记录\n\n登录成功",
+      "script": "case-runner.py",
+      "run_at": "2026-08-08 22:09:48"
+    },
+    {
+      "id": "TC02",
+      "desc": "密码错误（admin123 / Admin1234）",
+      "step": "goto(/login) → fill(input[placeholder='请输入用户名']) → fill(input[placeholder='请输入密码']) → click(button.submit-btn) → expect()",
+      "expect": "应出现错误提示（如「账号或密码错误」）；无提示 = BUG-001 复现（FAIL）",
+      "result": "断言失败: 断言失败[form_error]: 表单校验提示未出现: 账号或密码错误 (实际: [])",
+      "url": "http://123.56.21.178:8080/login",
+      "title": "自动化测试平台",
+      "verdict": "FAIL",
+      "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\login-TC02.png",
+      "api_responses": [
+        {
+          "status": 401,
+          "url": "http://123.56.21.178:8080/api/v1/auth/login",
+          "method": "POST"
+        },
+        {
+          "status": 200,
+          "url": "http://123.56.21.178:8080/api/v1/auth/refresh",
+          "method": "POST"
+        },
+        {
+          "status": 401,
+          "url": "http://123.56.21.178:8080/api/v1/auth/login",
+          "method": "POST"
+        },
+        {
+          "status": 200,
+          "url": "http://123.56.21.178:8080/api/v1/auth/refresh",
+          "method": "POST"
+        },
+        {
+          "status": 401,
+          "url": "http://123.56.21.178:8080/api/v1/auth/login",
+          "method": "POST"
+        },
+        {
+          "status": 401,
+          "url": "http://123.56.21.178:8080/api/v1/auth/refresh",
+          "method": "POST"
+        }
+      ],
+      "hints": [],
+      "dialogs": [],
+      "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n密码\n记住我\n登 录",
+      "script": "case-runner.py",
+      "run_at": "2026-08-08 22:09:50"
+    },
+    {
+      "id": "TC03",
+      "desc": "账号不存在（nosuchuser888 / Admin123）",
+      "step": "goto(/login) → fill(input[placeholder='请输入用户名']) → fill(input[placeholder='请输入密码']) → click(button.submit-btn) → expect()",
+      "expect": "应出现错误提示；无提示 = BUG-001 复现（FAIL）",
+      "result": "断言失败: 断言失败[form_error]: 表单校验提示未出现: 账号或密码错误 (实际: [])",
+      "url": "http://123.56.21.178:8080/login",
+      "title": "自动化测试平台",
+      "verdict": "FAIL",
+      "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\login-TC03.png",
+      "api_responses": [
+        {
+          "status": 401,
+          "url": "http://123.56.21.178:8080/api/v1/auth/login",
+          "method": "POST"
+        }
+      ],
+      "hints": [],
+      "dialogs": [],
+      "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n密码\n记住我\n登 录",
+      "script": "case-runner.py",
+      "run_at": "2026-08-08 22:09:52"
+    },
+    {
+      "id": "TC04",
+      "desc": "账号为空（密码 Admin123）",
+      "step": "goto(/login) → fill(input[placeholder='请输入密码']) → click(button.submit-btn) → expect()",
+      "expect": "提示「请输入用户名」",
+      "result": "所有断言通过",
+      "url": "http://123.56.21.178:8080/login",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\login-TC04.png",
+      "api_responses": [],
+      "hints": [
+        "请输入用户名"
+      ],
+      "dialogs": [],
+      "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n密码\n记住我\n登 录\n\n请输入用户名",
+      "script": "case-runner.py",
+      "run_at": "2026-08-08 22:09:53"
+    },
+    {
+      "id": "TC05",
+      "desc": "密码为空（账号 admin123）",
+      "step": "goto(/login) → fill(input[placeholder='请输入用户名']) → click(button.submit-btn) → expect()",
+      "expect": "提示「请输入密码」",
+      "result": "所有断言通过",
+      "url": "http://123.56.21.178:8080/login",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\login-TC05.png",
+      "api_responses": [],
+      "hints": [
+        "请输入密码"
+      ],
+      "dialogs": [],
+      "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n密码\n记住我\n登 录\n\n请输入密码",
+      "script": "case-runner.py",
+      "run_at": "2026-08-08 22:09:54"
+    },
+    {
+      "id": "TC06",
+      "desc": "账号密码均为空",
+      "step": "goto(/login) → click(button.submit-btn) → expect()",
+      "expect": "提示「请输入用户名」",
+      "result": "所有断言通过",
+      "url": "http://123.56.21.178:8080/login",
+      "title": "自动化测试平台",
+      "verdict": "PASS",
+      "screenshot": "C:\\Users\\ahusj\\claude-code-vibe\\test-ds-v4-flash\\.reasonix\\tmp\\login-TC06.png",
+      "api_responses": [],
+      "hints": [
+        "请输入用户名"
+      ],
+      "dialogs": [],
+      "body_excerpt": "自动化测试平台\n\n企业级自动化测试解决方案\n覆盖 Web · 移动端 · API 全场景\n\n关键字驱动 + Python 脚本双模式\nPlaywright · Appium · pytest 全栈覆盖\n实时执行监控 + 详细步骤级报告\n登录\n注册\n用户名\n密码\n记住我\n登 录\n\n请输入用户名",
+      "script": "case-runner.py",
+      "run_at": "2026-08-08 22:09:54"
+    }
+  ]
+}

@@ -20,22 +20,28 @@ jobs:
           pip install playwright mcp
           python -m playwright install --with-deps chromium
 
-      - name: 登录回归（复用版本化脚本，无副作用）
+      - name: 登录回归（case-runner 用例库，无副作用）
         env:
           TEST_WS: ${{ github.workspace }}
-        run: python .reasonix/tmp/test-login-cases-v3.py
+        run: python .reasonix/mcp/case-runner.py --cases .reasonix/tmp/login-cases.json
 
-      - name: 注册回归（复用版本化脚本）
+      - name: 注册回归（case-runner 用例库）
         env:
           TEST_WS: ${{ github.workspace }}
-        run: python .reasonix/tmp/test-register-cases-v4.py
+        run: python .reasonix/mcp/case-runner.py --cases .reasonix/tmp/register-cases.json
+
+      - name: 全站探索回归（case-runner 用例库）
+        env:
+          TEST_WS: ${{ github.workspace }}
+        run: python .reasonix/mcp/case-runner.py --cases .reasonix/tmp/explore-cases.json
 
       - name: 生成报告（版本与数据对齐）
         env:
           TEST_WS: ${{ github.workspace }}
         run: |
-          python .reasonix/tmp/gen-report.py login 3
-          python .reasonix/tmp/gen-report.py register 4
+          python .reasonix/tmp/gen-report.py login 4
+          python .reasonix/tmp/gen-report.py register 5
+          python .reasonix/tmp/gen-report.py explore 2
 
       - name: 上传报告制品
         uses: actions/upload-artifact@v4

@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "module": "register",
+    "title": "注册页用例集 v1",
+    "base_url": "http://123.56.21.178:8080",
+    "ts_placeholder": "<ts>"
+  },
+  "cases": [
+    {
+      "id": "TC01", "priority": "P0",
+      "desc": "正常注册成功（唯一账号 testuser_r<ts>）",
+      "precondition": "未登录，无同名账号",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "click", "selector": "button.tab-btn:has-text('注册')"},
+        {"action": "fill", "selector": "input[placeholder='3-50个字符，字母数字下划线']", "value": "testuser_r<ts>"},
+        {"action": "fill", "selector": "input[placeholder='请输入邮箱地址']", "value": "testuser_r<ts>@test.com"},
+        {"action": "fill", "selector": "input[placeholder='8-128个字符，须含大小写字母和数字']", "value": "Test123456"},
+        {"action": "fill", "selector": "input[placeholder='请再次输入密码']", "value": "Test123456"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "注册成功"}
+      ],
+      "expect": "toast「注册成功，请登录」，自动切回登录 tab"
+    },
+    {
+      "id": "TC02", "priority": "P1",
+      "desc": "密码与确认密码不一致",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "click", "selector": "button.tab-btn:has-text('注册')"},
+        {"action": "fill", "selector": "input[placeholder='3-50个字符，字母数字下划线']", "value": "testuser_c2<ts>"},
+        {"action": "fill", "selector": "input[placeholder='请输入邮箱地址']", "value": "testuser_c2<ts>@test.com"},
+        {"action": "fill", "selector": "input[placeholder='8-128个字符，须含大小写字母和数字']", "value": "Test123456"},
+        {"action": "fill", "selector": "input[placeholder='请再次输入密码']", "value": "Test1234567"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "两次输入的密码不一致"}
+      ],
+      "expect": "提示「两次输入的密码不一致」，无请求"
+    },
+    {
+      "id": "TC03", "priority": "P1",
+      "desc": "密码过短（Ab1）",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "defect": "OBS-001",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "click", "selector": "button.tab-btn:has-text('注册')"},
+        {"action": "fill", "selector": "input[placeholder='3-50个字符，字母数字下划线']", "value": "testuser_c3<ts>"},
+        {"action": "fill", "selector": "input[placeholder='请输入邮箱地址']", "value": "testuser_c3<ts>@test.com"},
+        {"action": "fill", "selector": "input[placeholder='8-128个字符，须含大小写字母和数字']", "value": "Ab1"},
+        {"action": "fill", "selector": "input[placeholder='请再次输入密码']", "value": "Ab1"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "at least 8 characters"}
+      ],
+      "expect": "后端 422 拒绝并提示；出现英文提示属 OBS-001 已知现象"
+    },
+    {
+      "id": "TC04", "priority": "P1",
+      "desc": "弱密码（test1234 无大写）",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "defect": "OBS-001",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "click", "selector": "button.tab-btn:has-text('注册')"},
+        {"action": "fill", "selector": "input[placeholder='3-50个字符，字母数字下划线']", "value": "testuser_c4<ts>"},
+        {"action": "fill", "selector": "input[placeholder='请输入邮箱地址']", "value": "testuser_c4<ts>@test.com"},
+        {"action": "fill", "selector": "input[placeholder='8-128个字符，须含大小写字母和数字']", "value": "test1234"},
+        {"action": "fill", "selector": "input[placeholder='请再次输入密码']", "value": "test1234"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "密码必须包含大写字母"}
+      ],
+      "expect": "后端 422 拒绝并提示「密码必须包含大写字母」"
+    },
+    {
+      "id": "TC05", "priority": "P1",
+      "desc": "用户名已存在（admin123）",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "click", "selector": "button.tab-btn:has-text('注册')"},
+        {"action": "fill", "selector": "input[placeholder='3-50个字符，字母数字下划线']", "value": "admin123"},
+        {"action": "fill", "selector": "input[placeholder='请输入邮箱地址']", "value": "admin123_c5<ts>@test.com"},
+        {"action": "fill", "selector": "input[placeholder='8-128个字符，须含大小写字母和数字']", "value": "Test123456"},
+        {"action": "fill", "selector": "input[placeholder='请再次输入密码']", "value": "Test123456"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "用户名已被占用"}
+      ],
+      "expect": "后端 400「用户名已被占用」"
+    },
+    {
+      "id": "TC05b", "priority": "P1",
+      "desc": "已存在账号补充验证（testuser_v3_202608062115081500）",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "click", "selector": "button.tab-btn:has-text('注册')"},
+        {"action": "fill", "selector": "input[placeholder='3-50个字符，字母数字下划线']", "value": "testuser_v3_202608062115081500"},
+        {"action": "fill", "selector": "input[placeholder='请输入邮箱地址']", "value": "tc05b_<ts>@test.com"},
+        {"action": "fill", "selector": "input[placeholder='8-128个字符，须含大小写字母和数字']", "value": "Test123456"},
+        {"action": "fill", "selector": "input[placeholder='请再次输入密码']", "value": "Test123456"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "用户名已被占用"}
+      ],
+      "expect": "后端 400「用户名已被占用」"
+    },
+    {
+      "id": "TC06", "priority": "P1",
+      "desc": "用户名过短（ab）",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "defect": "OBS-001",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "click", "selector": "button.tab-btn:has-text('注册')"},
+        {"action": "fill", "selector": "input[placeholder='3-50个字符，字母数字下划线']", "value": "ab"},
+        {"action": "fill", "selector": "input[placeholder='请输入邮箱地址']", "value": "ab_c6<ts>@test.com"},
+        {"action": "fill", "selector": "input[placeholder='8-128个字符，须含大小写字母和数字']", "value": "Test123456"},
+        {"action": "fill", "selector": "input[placeholder='请再次输入密码']", "value": "Test123456"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "at least 3 characters"}
+      ],
+      "expect": "后端 422 拒绝并提示；出现英文提示属 OBS-001 已知现象"
+    },
+    {
+      "id": "TC07", "priority": "P1",
+      "desc": "邮箱格式非法（not-an-email）",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "defect": "OBS-002",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "click", "selector": "button.tab-btn:has-text('注册')"},
+        {"action": "fill", "selector": "input[placeholder='3-50个字符，字母数字下划线']", "value": "testuser_c7<ts>"},
+        {"action": "fill", "selector": "input[placeholder='请输入邮箱地址']", "value": "not-an-email"},
+        {"action": "fill", "selector": "input[placeholder='8-128个字符，须含大小写字母和数字']", "value": "Test123456"},
+        {"action": "fill", "selector": "input[placeholder='请再次输入密码']", "value": "Test123456"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "no_toast", "text": "注册成功"}
+      ],
+      "expect": "HTML5 原生校验拦截，无「注册成功」提示、无 API 请求"
+    },
+    {
+      "id": "TC08", "priority": "P1",
+      "desc": "用户名为空",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "click", "selector": "button.tab-btn:has-text('注册')"},
+        {"action": "fill", "selector": "input[placeholder='请输入邮箱地址']", "value": "tc08<ts>@test.com"},
+        {"action": "fill", "selector": "input[placeholder='8-128个字符，须含大小写字母和数字']", "value": "Test123456"},
+        {"action": "fill", "selector": "input[placeholder='请再次输入密码']", "value": "Test123456"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "请输入用户名"}
+      ],
+      "expect": "提示「请输入用户名」"
+    },
+    {
+      "id": "TC09", "priority": "P1",
+      "desc": "邮箱为空",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "click", "selector": "button.tab-btn:has-text('注册')"},
+        {"action": "fill", "selector": "input[placeholder='3-50个字符，字母数字下划线']", "value": "testuser_c9<ts>"},
+        {"action": "fill", "selector": "input[placeholder='8-128个字符，须含大小写字母和数字']", "value": "Test123456"},
+        {"action": "fill", "selector": "input[placeholder='请再次输入密码']", "value": "Test123456"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "请输入邮箱"}
+      ],
+      "expect": "提示「请输入邮箱」"
+    },
+    {
+      "id": "TC10", "priority": "P1",
+      "desc": "密码为空",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "click", "selector": "button.tab-btn:has-text('注册')"},
+        {"action": "fill", "selector": "input[placeholder='3-50个字符，字母数字下划线']", "value": "testuser_c10<ts>"},
+        {"action": "fill", "selector": "input[placeholder='请输入邮箱地址']", "value": "testuser_c10<ts>@test.com"},
+        {"action": "fill", "selector": "input[placeholder='请再次输入密码']", "value": "Test123456"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "请输入密码"}
+      ],
+      "expect": "提示「请输入密码」"
+    },
+    {
+      "id": "TC11", "priority": "P1",
+      "desc": "确认密码为空",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "defect": "OBS-003",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "click", "selector": "button.tab-btn:has-text('注册')"},
+        {"action": "fill", "selector": "input[placeholder='3-50个字符，字母数字下划线']", "value": "testuser_c11<ts>"},
+        {"action": "fill", "selector": "input[placeholder='请输入邮箱地址']", "value": "testuser_c11<ts>@test.com"},
+        {"action": "fill", "selector": "input[placeholder='8-128个字符，须含大小写字母和数字']", "value": "Test123456"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "两次输入的密码不一致"}
+      ],
+      "expect": "提示「两次输入的密码不一致」（OBS-003：文案应为「请再次输入密码」）"
+    },
+    {
+      "id": "TC12", "priority": "P0",
+      "desc": "注册账号登录闭环验证（testuser_r<ts>）",
+      "precondition": "TC01 已注册 testuser_r<ts>",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "fill", "selector": "input[placeholder='请输入用户名']", "value": "testuser_r<ts>"},
+        {"action": "fill", "selector": "input[placeholder='请输入密码']", "value": "Test123456"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "登录成功"},
+        {"action": "expect", "kind": "url", "text": "/dashboard"}
+      ],
+      "expect": "新账号登录成功，跳转 /dashboard"
+    }
+  ]
+}

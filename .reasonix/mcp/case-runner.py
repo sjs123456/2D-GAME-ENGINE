@@ -132,6 +132,12 @@ def run_case(page, case, ctx):
                         result["hints"].extend(t.strip() for t in errs if t.strip())
                         if not any(s["text"] in t for t in errs):
                             raise AssertionError(f"表单校验提示未出现: {s['text']} (实际: {errs})")
+                    elif kind == "no_toast":
+                        page.wait_for_timeout(2000)
+                        texts = page.eval_on_selector_all(".el-message", "els => els.map(e => e.textContent)")
+                        result["hints"].extend(t.strip() for t in texts if t.strip())
+                        if any(s["text"] in t for t in texts):
+                            raise AssertionError(f"不应出现 toast: {s['text']} (实际: {texts})")
                     elif kind == "visible":
                         page.wait_for_selector(resolve(s["selector"], ctx), timeout=STEP_TIMEOUT)
                     elif kind == "not_visible":

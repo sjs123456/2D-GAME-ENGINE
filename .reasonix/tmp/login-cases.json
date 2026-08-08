@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "module": "login",
+    "title": "登录页用例集 v1",
+    "base_url": "http://123.56.21.178:8080",
+    "ts_placeholder": "<ts>"
+  },
+  "cases": [
+    {
+      "id": "TC01", "priority": "P0",
+      "desc": "登录成功（admin123 / Admin123）",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "fill", "selector": "input[placeholder='请输入用户名']", "value": "admin123"},
+        {"action": "fill", "selector": "input[placeholder='请输入密码']", "value": "Admin123"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "登录成功"},
+        {"action": "expect", "kind": "url", "text": "/dashboard"}
+      ],
+      "expect": "toast「登录成功」，跳转 /dashboard"
+    },
+    {
+      "id": "TC02", "priority": "P0",
+      "desc": "密码错误（admin123 / Admin1234）",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "defect": "BUG-001",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "fill", "selector": "input[placeholder='请输入用户名']", "value": "admin123"},
+        {"action": "fill", "selector": "input[placeholder='请输入密码']", "value": "Admin1234"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "form_error", "text": "账号或密码错误"}
+      ],
+      "expect": "应出现错误提示（如「账号或密码错误」）；无提示 = BUG-001 复现（FAIL）"
+    },
+    {
+      "id": "TC03", "priority": "P0",
+      "desc": "账号不存在（nosuchuser888 / Admin123）",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "defect": "BUG-001",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "fill", "selector": "input[placeholder='请输入用户名']", "value": "nosuchuser888"},
+        {"action": "fill", "selector": "input[placeholder='请输入密码']", "value": "Admin123"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "form_error", "text": "账号或密码错误"}
+      ],
+      "expect": "应出现错误提示；无提示 = BUG-001 复现（FAIL）"
+    },
+    {
+      "id": "TC04", "priority": "P1",
+      "desc": "账号为空（密码 Admin123）",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "fill", "selector": "input[placeholder='请输入密码']", "value": "Admin123"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "请输入用户名"}
+      ],
+      "expect": "提示「请输入用户名」"
+    },
+    {
+      "id": "TC05", "priority": "P1",
+      "desc": "密码为空（账号 admin123）",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "fill", "selector": "input[placeholder='请输入用户名']", "value": "admin123"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "请输入密码"}
+      ],
+      "expect": "提示「请输入密码」"
+    },
+    {
+      "id": "TC06", "priority": "P1",
+      "desc": "账号密码均为空",
+      "precondition": "未登录",
+      "semantic": "normal",
+      "steps": [
+        {"action": "goto", "url": "/login"},
+        {"action": "click", "selector": "button.submit-btn"},
+        {"action": "expect", "kind": "toast", "text": "请输入用户名"}
+      ],
+      "expect": "提示「请输入用户名」"
+    }
+  ]
+}
