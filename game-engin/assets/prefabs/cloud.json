@@ -1,0 +1,47 @@
+﻿{
+    "transform":  {
+                      "pos":  [
+                                  0,
+                                  0
+                              ],
+                      "scale":  [
+                                    64,
+                                    40
+                                ],
+                      "rot":  0
+                  },
+    "components":  [
+                       {
+                           "isStatic":  true,
+                           "gravityScale":  1,
+                           "type":  "RigidBody",
+                           "mass":  1,
+                           "restitution":  0,
+                           "velocity":  [
+                                            0,
+                                            0
+                                        ]
+                       },
+                       {
+                           "interpolate":  true,
+                           "color":  [
+                                         1,
+                                         1,
+                                         1,
+                                         1
+                                     ],
+                           "layer":  100,
+                           "type":  "SpriteRenderer",
+                           "texture":  "textures/mario_atlas.png",
+                           "uv":  [
+                                      0.1667,
+                                      0,
+                                      0.3333,
+                                      0.2
+                                  ],
+                           "sortOrder":  0
+                       }
+                   ],
+    "name":  "cloud",
+    "id":  "cloud_prefab"
+}

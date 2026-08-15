@@ -1,0 +1,33 @@
+{
+  "id": "enemy_prefab",
+  "name": "Enemy",
+  "transform": {
+    "pos": [0, 0],
+    "rot": 0,
+    "scale": [44, 44]
+  },
+  "components": [
+    {
+      "type": "RigidBody",
+      "velocity": [0, 0],
+      "gravityScale": 1,
+      "restitution": 0,
+      "mass": 1,
+      "isStatic": false
+    },
+    {
+      "type": "BoxCollider",
+      "size": [44, 44],
+      "offset": [0, 0]
+    },
+    {
+      "type": "SpriteRenderer",
+      "texture": "builtin:white",
+      "uv": [0, 0, 1, 1],
+      "color": [0.9, 0.25, 0.25, 1],
+      "layer": 100,
+      "sortOrder": 0,
+      "interpolate": true
+    }
+  ]
+}

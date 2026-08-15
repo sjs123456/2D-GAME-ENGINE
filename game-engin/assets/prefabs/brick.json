@@ -1,0 +1,59 @@
+﻿{
+    "transform":  {
+                      "pos":  [
+                                  0,
+                                  0
+                              ],
+                      "scale":  [
+                                    32,
+                                    32
+                                ],
+                      "rot":  0
+                  },
+    "components":  [
+                       {
+                           "isStatic":  true,
+                           "gravityScale":  1,
+                           "type":  "RigidBody",
+                           "mass":  1,
+                           "restitution":  0,
+                           "velocity":  [
+                                            0,
+                                            0
+                                        ]
+                       },
+                       {
+                           "offset":  [
+                                          0,
+                                          0
+                                      ],
+                           "size":  [
+                                        32,
+                                        32
+                                    ],
+                           "type":  "BoxCollider",
+                           "oneWay":  false
+                       },
+                       {
+                           "interpolate":  true,
+                           "color":  [
+                                         1,
+                                         1,
+                                         1,
+                                         1
+                                     ],
+                           "layer":  100,
+                           "type":  "SpriteRenderer",
+                           "texture":  "textures/mario_atlas.png",
+                           "uv":  [
+                                      0.3333,
+                                      0.8,
+                                      0.5,
+                                      1
+                                  ],
+                           "sortOrder":  0
+                       }
+                   ],
+    "name":  "brick",
+    "id":  "brick_prefab"
+}

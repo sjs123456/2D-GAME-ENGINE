@@ -1,0 +1,9 @@
+# Input map: action KEY1 KEY2 (first matching key wins)
+move_left  A LEFT
+move_right D RIGHT
+move_up    W UP
+move_down  S DOWN
+zoom_in    = Keypad +
+zoom_out   - Keypad -
+jump       SPACE
+quit       ESCAPE

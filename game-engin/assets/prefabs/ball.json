@@ -1,0 +1,42 @@
+{
+  "id": "ball_prefab",
+  "name": "Ball",
+  "transform": {
+    "pos": [0, 0],
+    "rot": 0,
+    "scale": [22, 22]
+  },
+  "components": [
+    {
+      "type": "RigidBody",
+      "velocity": [0, 0],
+      "gravityScale": 1,
+      "restitution": 0.1,
+      "mass": 1,
+      "isStatic": false
+    },
+    {
+      "type": "CircleCollider",
+      "radius": 11,
+      "offset": [0, 0]
+    },
+    {
+      "type": "SpriteRenderer",
+      "texture": "builtin:circle",
+      "uv": [0, 0, 1, 1],
+      "color": [0.9, 0.6, 0.2, 1],
+      "layer": 100,
+      "sortOrder": 0,
+      "interpolate": true
+    },
+    {
+      "type": "AudioSource",
+      "sound": "impact",
+      "playOnCollision": true,
+      "loop": false,
+      "volume": 0.5,
+      "range": 900,
+      "spatial": true
+    }
+  ]
+}

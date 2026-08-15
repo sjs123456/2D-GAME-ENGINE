@@ -1,0 +1,42 @@
+{
+  "id": "player_prefab",
+  "name": "Player",
+  "transform": {
+    "pos": [0, 0],
+    "rot": 0,
+    "scale": [40, 60]
+  },
+  "components": [
+    {
+      "type": "RigidBody",
+      "velocity": [0, 0],
+      "gravityScale": 1,
+      "restitution": 0,
+      "mass": 1,
+      "isStatic": false
+    },
+    {
+      "type": "BoxCollider",
+      "size": [40, 60],
+      "offset": [0, 0]
+    },
+    {
+      "type": "SpriteRenderer",
+      "texture": "builtin:white",
+      "uv": [0, 0, 1, 1],
+      "color": [0.3, 0.9, 0.4, 1],
+      "layer": 100,
+      "sortOrder": 0,
+      "interpolate": true
+    },
+    {
+      "type": "AudioSource",
+      "sound": "jump",
+      "playOnCollision": false,
+      "loop": false,
+      "volume": 1,
+      "range": 2000,
+      "spatial": false
+    }
+  ]
+}

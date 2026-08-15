@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "name": "level1",
+  "background": [0.1, 0.12, 0.16],
+  "entities": [
+    {
+      "id": "ground",
+      "name": "Ground",
+      "transform": { "pos": [0, -240], "rot": 0, "scale": [1800, 60] },
+      "components": [
+        { "type": "RigidBody", "isStatic": true },
+        { "type": "BoxCollider", "size": [1800, 60], "offset": [0, 0] },
+        { "type": "SpriteRenderer", "texture": "builtin:white", "color": [0.35, 0.42, 0.5, 1], "layer": 50 }
+      ]
+    },
+    {
+      "id": "wall_l",
+      "name": "WallL",
+      "transform": { "pos": [-900, -140], "rot": 0, "scale": [40, 800] },
+      "components": [
+        { "type": "RigidBody", "isStatic": true },
+        { "type": "BoxCollider", "size": [40, 800], "offset": [0, 0] },
+        { "type": "SpriteRenderer", "texture": "builtin:white", "color": [0.3, 0.36, 0.44, 1], "layer": 50 }
+      ]
+    },
+    {
+      "id": "wall_r",
+      "name": "WallR",
+      "transform": { "pos": [900, -140], "rot": 0, "scale": [40, 800] },
+      "components": [
+        { "type": "RigidBody", "isStatic": true },
+        { "type": "BoxCollider", "size": [40, 800], "offset": [0, 0] },
+        { "type": "SpriteRenderer", "texture": "builtin:white", "color": [0.3, 0.36, 0.44, 1], "layer": 50 }
+      ]
+    },
+    {
+      "id": "plat1",
+      "name": "Plat1",
+      "transform": { "pos": [-450, -40], "rot": 0, "scale": [280, 32] },
+      "components": [
+        { "type": "RigidBody", "isStatic": true },
+        { "type": "BoxCollider", "size": [280, 32], "offset": [0, 0] },
+        { "type": "SpriteRenderer", "texture": "builtin:white", "color": [0.45, 0.55, 0.4, 1], "layer": 50 }
+      ]
+    },
+    {
+      "id": "plat2",
+      "name": "Plat2",
+      "transform": { "pos": [50, -20], "rot": 0, "scale": [280, 32] },
+      "components": [
+        { "type": "RigidBody", "isStatic": true },
+        { "type": "BoxCollider", "size": [280, 32], "offset": [0, 0] },
+        { "type": "SpriteRenderer", "texture": "builtin:white", "color": [0.45, 0.55, 0.4, 1], "layer": 50 }
+      ]
+    },
+    {
+      "id": "plat3",
+      "name": "Plat3",
+      "transform": { "pos": [-250, 140], "rot": 0, "scale": [260, 32] },
+      "components": [
+        { "type": "RigidBody", "isStatic": true },
+        { "type": "BoxCollider", "size": [260, 32], "offset": [0, 0] },
+        { "type": "SpriteRenderer", "texture": "builtin:white", "color": [0.45, 0.55, 0.4, 1], "layer": 50 }
+      ]
+    },
+    {
+      "id": "plat4",
+      "name": "Plat4",
+      "transform": { "pos": [400, 110], "rot": 0, "scale": [260, 32] },
+      "components": [
+        { "type": "RigidBody", "isStatic": true },
+        { "type": "BoxCollider", "size": [260, 32], "offset": [0, 0] },
+        { "type": "SpriteRenderer", "texture": "builtin:white", "color": [0.45, 0.55, 0.4, 1], "layer": 50 }
+      ]
+    },
+    {
+      "id": "plat5",
+      "name": "Plat5",
+      "transform": { "pos": [700, -30], "rot": 0, "scale": [240, 32] },
+      "components": [
+        { "type": "RigidBody", "isStatic": true },
+        { "type": "BoxCollider", "size": [240, 32], "offset": [0, 0] },
+        { "type": "SpriteRenderer", "texture": "builtin:white", "color": [0.45, 0.55, 0.4, 1], "layer": 50 }
+      ]
+    },
+    {
+      "id": "Player",
+      "name": "Player",
+      "prefab": "prefabs/player.json",
+      "overrides": { "transform.pos": [-800, 120] }
+    },
+    {
+      "id": "enemy_1",
+      "name": "Enemy1",
+      "prefab": "prefabs/enemy.json",
+      "overrides": { "transform.pos": [-500, -188] }
+    },
+    {
+      "id": "enemy_2",
+      "name": "Enemy2",
+      "prefab": "prefabs/enemy.json",
+      "overrides": { "transform.pos": [150, 18] }
+    },
+    {
+      "id": "enemy_3",
+      "name": "Enemy3",
+      "prefab": "prefabs/enemy.json",
+      "overrides": { "transform.pos": [400, 148] }
+    },
+    {
+      "id": "coin_1",
+      "name": "Coin1",
+      "prefab": "prefabs/coin.json",
+      "overrides": { "transform.pos": [-450, 70] }
+    },
+    {
+      "id": "coin_2",
+      "name": "Coin2",
+      "prefab": "prefabs/coin.json",
+      "overrides": { "transform.pos": [50, 160] }
+    },
+    {
+      "id": "coin_3",
+      "name": "Coin3",
+      "prefab": "prefabs/coin.json",
+      "overrides": { "transform.pos": [-250, 270] }
+    },
+    {
+      "id": "coin_4",
+      "name": "Coin4",
+      "prefab": "prefabs/coin.json",
+      "overrides": { "transform.pos": [400, 240] }
+    },
+    {
+      "id": "coin_5",
+      "name": "Coin5",
+      "prefab": "prefabs/coin.json",
+      "overrides": { "transform.pos": [700, 100] }
+    }
+  ]
+}
